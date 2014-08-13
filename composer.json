@@ -1,5 +1,6 @@
 {
     "name": "uthando-cms/uthando-file-manager",
+    "version" : "1.0",
     "description": "File Manager module for Uthando CMS",
     "license": "BSD-3-Clause",
     "keywords": [ "framework", "zf2","cms", "uthando", "file", "manager"],
@@ -16,9 +17,12 @@
     
     "require" : {
 	    "php" : ">=5.4",
-	    "zendframework/zendframework" : "2.*"
+	    "uthando-cms/uthando-common" : "dev-master",
+	    "uthando-cms/uthando-admin" : "dev-master"
     },
-    
+    "require-dev" : {
+    	"zendframework/zendframework" : "2.*"
+    },
     "autoload": {
         "psr-0": {
             "UthandoFileManager": "src/"
