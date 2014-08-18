@@ -1,24 +1,30 @@
 <?php
 return [
-    'userAcl' => [
-        'userRoles' => [
-            'guest' => [
-                'privileges' => [
-                    'allow' => [
-                        ['controller' => 'UthandoFileManager\Controller\FileManager', 'action' => 'index'],
+    'uthando_user' => [
+        'acl' => [
+            'roles' => [
+                'guest' => [
+                    'privileges' => [
+                        'allow' => [
+                            'controllers' => [
+                                'UthandoFileManager\Controller\FileManager' => ['action' => 'index'],
+                            ]
+                        ],
+                    ],
+                ],
+                'registered' => [
+                    'privileges' => [
+                        'allow' => [
+                            'controllers' => [
+                                'UthandoFileManager\Controller\FileManager' => ['action' => 'all'],
+                            ],
+                        ],
                     ],
                 ],
             ],
-            'registered' => [
-                'privileges' => [
-                    'allow' => [
-                        ['controller' => 'UthandoFileManager\Controller\FileManager', 'action' => 'all'],
-                    ],
-                ],
+            'resources' => [
+                'UthandoFileManager\Controller\FileManager',
             ],
-        ],
-        'userResources' => [
-            'UthandoFileManager\Controller\FileManager',
         ],
     ],
     'router' => [
