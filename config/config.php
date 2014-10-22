@@ -3,19 +3,11 @@ return [
     'uthando_user' => [
         'acl' => [
             'roles' => [
-                'guest' => [
+                'admin' => [
                     'privileges' => [
                         'allow' => [
                             'controllers' => [
-                                'UthandoFileManager\Controller\FileManager' => ['action' => 'index'],
-                            ]
-                        ],
-                    ],
-                ],
-                'registered' => [
-                    'privileges' => [
-                        'allow' => [
-                            'controllers' => [
+                                'UthandoFileManager\Controller\AssetManager' => ['action' => 'all'],
                                 'UthandoFileManager\Controller\FileManager' => ['action' => 'all'],
                             ],
                         ],
@@ -23,35 +15,42 @@ return [
                 ],
             ],
             'resources' => [
+                'UthandoFileManager\Controller\AssetManager',
                 'UthandoFileManager\Controller\FileManager',
             ],
         ],
     ],
     'router' => [
         'routes' => [
-            'file-manager' => [
-                'type'    => 'Literal',
-                'options' => [
-                    'route'    => '/file-manager',
-                    'defaults' => [
-                        '__NAMESPACE__' => 'UthandoFileManager\Controller',
-                        'controller'    => 'FileManager',
-                        'action'        => 'index',
-                    ],
-                ],
-                'may_terminate' => true,
+            'admin' => [
                 'child_routes' => [
-                    'default' => [
+                    'file-manager' => [
                         'type'    => 'Segment',
                         'options' => [
-                            'route'    => '/[:controller[/:action]]',
+                            'route'    => '/file-manager[/:action]',
                             'constraints' => [
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ],
                             'defaults' => [
+                                '__NAMESPACE__' => 'UthandoFileManager\Controller',
+                                'controller'    => 'FileManager',
+                                'action'        => 'index',
                             ],
                         ],
+                    ],
+                    'asset-manager' => [
+                        'type'      => 'Segment',
+                        'options'   => [
+                            'route' => '/asset-manager[/img/[yes][server]][/:action][/]',
+                            'constraints' => [
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults'  => [
+                                '__NAMESPACE__' => 'UthandoFileManager\Controller',
+                                'controller'    => 'AssetManager',
+                                'action'        => 'index',
+                            ]
+                        ]
                     ],
                 ],
             ],

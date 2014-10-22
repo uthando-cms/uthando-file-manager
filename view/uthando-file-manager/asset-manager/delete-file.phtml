@@ -1,0 +1,15 @@
+<?php
+
+define("WEBSITEROOT_LOCALPATH", $_SERVER['DOCUMENT_ROOT']);
+define("UPLOAD_FILE_TYPES", "jpg|jpeg|gif|png|txt|pdf|zip");
+
+$root=WEBSITEROOT_LOCALPATH;
+$file = $root . $_POST["file"];
+
+if(file_exists ($file)) {
+    unlink($file);
+} else {
+
+}
+
+?>
