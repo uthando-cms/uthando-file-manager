@@ -29,7 +29,7 @@
 
         <script language="javascript" type="text/javascript">
 
-            var base = "/userfiles"; /*Relative to Root*/
+            var base = "<?=$this->basePath('/userfiles')?>"; /*Relative to Root*/
 
             var readonly = false;
             var fullpath = false;
@@ -63,7 +63,7 @@
                 $('#container_id').html("");
                 $('#container_id').fileTree({
                     root: base + '/',
-                    script: '/admin/asset-manager/file-tree/'+qs,
+                    script: '<?=$this->basePath('/admin/asset-manager/file-tree/')?>'+qs,
                     expandSpeed: 750,
                     collapseSpeed: 750,
                     expandEasing: 'easeOutBounce',
