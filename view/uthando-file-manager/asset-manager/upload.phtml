@@ -43,6 +43,7 @@ if (!empty($_FILES)) {
         // mkdir(str_replace('//','/',$targetPath), 0755, true);
 
         move_uploaded_file($tempFile,$targetFile);
+        chmod($targetFile, 0644);
         echo str_replace(WEBSITEROOT_LOCALPATH,'', urlencode($targetFile));
         echo "<script>parent.refresh();</script>";
     } else {

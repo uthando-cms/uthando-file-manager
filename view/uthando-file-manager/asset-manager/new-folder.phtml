@@ -16,6 +16,7 @@ if(!is_writable($parent)) {
 if(!file_exists ($newfolder)) {
     //create the folder
     mkdir($newfolder);
+    chmod($newfolder, 0755);
 } else {
     echo "Folder already exists.";
 }

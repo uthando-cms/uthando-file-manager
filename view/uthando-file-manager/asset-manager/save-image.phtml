@@ -18,6 +18,7 @@ $fileNameWitPath = $root . $filenew;
 $fp = fopen( $fileNameWitPath, 'wb' );
 fwrite( $fp, base64_decode($imageData));
 fclose( $fp );
+chmod($fileNameWitPath, 0644);
 
 echo "<html><body onload=\"parent.imageSaved('" . $filenew . "')\"></body></html>";
 ?>
