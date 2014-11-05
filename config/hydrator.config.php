@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'UthandoFileManagerImage'   => 'UthandoFileManager\Hydrator\Image',
+    'invokables' => [
+        'UthandoFileManagerImage'   => 'UthandoFileManager\Hydrator\Image',
+    ],
 ];

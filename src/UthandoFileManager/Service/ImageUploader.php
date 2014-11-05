@@ -10,89 +10,43 @@ class ImageUploader extends Uploader
     protected $serviceAlias = 'UthandoFileManagerImage';
 
     /**
-     * @param ImageModel $image
-     * @param null $params
+     * @param $data
      * @return string
      */
-    public function uploadImage(ImageModel $image, $params = null)
+    public function uploadImage($data)
     {
-        /* @var $em \Zend\EventManager\EventManager */
-        $em = $this->getEventManager();
 
-        $argv = compact('image', 'params');
-        $argv = $em->prepareArgs($argv);
+        /* @var $model \UthandoFileManager\Model\Image */
+        $model = $this->getModel();
+        $form  = $this->getForm(null, $data, true, false);
 
-        $em->trigger('pre.fileupload', $this, $argv);
+        $options = $this->getOptions();
 
-        try {
+        $argv = compact('data', 'options');
 
-            $options = $this->getOptions();
+        $this->getEventManager()->trigger('pre.upload', $this, $this->prepareEventArguments($argv));
 
-            if (!$image["error"] === UPLOAD_ERR_OK) {
-                throw new UthandoFileManagerException($this->error([$image['error']]));
-            }
+        /* @var $inputFilter \UthandoFileManager\InputFilter\Image */
+        $inputFilter = $form->getInputFilter();
+        $inputFilter->addImageFile($options);
 
-            $file = new \SplFileInfo($options->getDestination() . '/' . $image->getFileName());
-
-            if (false === is_writable($options->getDestination())) {
-                throw new UthandoFileManagerException(
-                    $this->error(self::DIR_NOT_WRITABLE, $this->getOptions()->getDestination())
-                );
-            }
-
-            if (false === $options->getOverwrite() && $file->isFile()) {
-                throw new UthandoFileManagerException($this->error(self::FILE_EXISTS, $file->__toString()));
-            }
-
-            $results = [];
-
-            if (true === $options->getUseMax()) {
-                if ($image->getWidth() > $options->getMaxWidth()) {
-                    $results['wide'] = $this->error(self::MIN_WIDTH, $options->getMinWidth());
-                }
-
-                if ($image->getHeight() > $options->getMaxHeight()) {
-                    $results['tall'] = $this->error(self::MAX_HEIGHT, $options->getMaxHeight());
-                }
-            }
-
-            if (true === $options->getUseMin()) {
-                if ($image->getWidth() < $options->getMinWidth()) {
-                    $results['narrow'] = $this->error(self::MIN_WIDTH, $options->getMinWidth());
-                }
-
-                if ($image->getHeight() < $options->getMaxHeight()) {
-                    $results['short'] = $this->error(self::MIN_HEIGHT, $options->getMaxHeight());
-                }
-            }
-
-            if (isset($results['narrow']) || isset($results['short'])) {
-                $errorMsg = (isset($results['short']) ? $results['short'] . PHP_EOL : '');
-                $errorMsg .= (isset($results['narrow']) ? $results['narrow'] . PHP_EOL : '');
-                throw new UthandoFileManagerException($errorMsg);
-            }
-
-            if (isset($results['wide']) || isset($results['tall'])) {
-                if (false === $options->getResizeOverSized()) {
-                    $errorMsg = (isset($results['tall']) ? $this->error(self::NO_RESIZE, $results['tall']) . PHP_EOL : '');
-                    $errorMsg .= (isset($results['wide']) ? $this->error(self::NO_RESIZE, $results['wide']) . PHP_EOL : '');
-                    throw new UthandoFileManagerException($errorMsg);
-                } else {
-                    $image = $this->resizeImage($image);
-                }
-            }
-
-            move_uploaded_file($image->getTempName(), $file->__toString());
-        } catch (UthandoFileManagerException $e) {
-            return $e->getMessage();
+        if (!$form->isValid()) {
+            return $form;
         }
 
-        $argv = compact('image', 'params');
-        $argv = $em->prepareArgs($argv);
+        $formData = $form->getData();
 
-        $em->trigger('post.fileupload', $this, $argv);
+        $hydrator = $this->getHydrator();
+        $model = $hydrator->hydrate($formData['image-file'], $model);
 
-        return 'Upload Success: ' . $file->getFilename();
+        //change file permissions to default
+        chmod($model->getTempName(), octdec($options->getDefaultFilePermissions()));
+
+        $argv = compact('data', 'options', 'model');
+
+        $this->getEventManager()->trigger('post.upload', $this, $this->prepareEventArguments($argv));
+
+        return $hydrator->extract($model);
     }
 
     /**

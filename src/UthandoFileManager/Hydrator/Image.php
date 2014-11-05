@@ -15,7 +15,7 @@ class Image extends AbstractHydrator
     public function extract($object)
     {
         return [
-            'filename'  => $object->getFileName(),
+            'name'  => $object->getFileName(),
             'type'      => $object->getType(),
             'size'      => $object->getSize(),
             'tmp_name'  => $object->getTempName(),
@@ -48,7 +48,6 @@ class Image extends AbstractHydrator
             ->setHeight($size[1])
             ->setMimeType($size[2])
             ->setError($data['error']);
-
         return $object;
     }
 }

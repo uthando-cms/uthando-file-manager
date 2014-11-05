@@ -2,7 +2,7 @@
 namespace UthandoFileManager\Service;
 
 use UthandoCommon\Service\AbstractService;
-use UthandoFileManager\Option\FileManagerOptions;
+use UthandoFileManager\Options\FileManagerOptions;
 
 class Uploader extends AbstractService
 {
@@ -59,18 +59,15 @@ class Uploader extends AbstractService
     }
 
     /**
-     * @param FileManagerOptions $options
-     */
-    public function setOptions(FileManagerOptions $options)
-    {
-        $this->options = $options;
-    }
-
-    /**
      * @return FileManagerOptions
      */
     public function getOptions()
     {
+        if (!$this->options instanceof FileManagerOptions) {
+            $options = $this->getServiceLocator()->get('UthandoFileManager\Options\FileManager');
+            $this->options = $options;
+        }
+
         return $this->options;
     }
 } 

@@ -11,6 +11,12 @@ class Image extends Form
         $this->add([
             'name' => 'image-file',
             'type' => 'file',
+            'attributes' => [
+                'id' => 'image-file',
+            ],
+            'options'		=> [
+                'label'			=> 'Browse...',
+            ],
         ]);
     }
 

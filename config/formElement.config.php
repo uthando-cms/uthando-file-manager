@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'UthandoFileManagerImage'   => 'UthandoFileManager\Form\Image',
+    'invokables' => [
+        'UthandoFileManagerImage'   => 'UthandoFileManager\Form\Image',
+    ],
 ];

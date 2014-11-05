@@ -10,6 +10,6 @@ return array(
     'uthando-file-manager/asset-manager/upload'        => __DIR__ . '/view/uthando-file-manager/asset-manager/upload.phtml',
     'uthando-file-manager/file-manager/index'          => __DIR__ . '/view/uthando-file-manager/file-manager/index.phtml',
     'uthando-file-manager/layout/asset-manager'        => __DIR__ . '/view/uthando-file-manager/layout/asset-manager.phtml',
+    'uthando-file-manager/uploader/upload-form'        => __DIR__ . '/view/uthando-file-manager/uploader/upload-form.phtml',
     'uthando-file-manager/uploader/upload-image'       => __DIR__ . '/view/uthando-file-manager/uploader/upload-image.phtml',
-    'uthando-file-manager/uploader/upload-progress'    => __DIR__ . '/view/uthando-file-manager/uploader/upload-progress.phtml',
 );

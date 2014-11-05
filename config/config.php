@@ -9,6 +9,7 @@ return [
                             'controllers' => [
                                 'UthandoFileManager\Controller\AssetManager' => ['action' => 'all'],
                                 'UthandoFileManager\Controller\FileManager' => ['action' => 'all'],
+                                'UthandoFileManager\Controller\Uploader' => ['action' => 'all'],
                             ],
                         ],
                     ],
@@ -17,6 +18,7 @@ return [
             'resources' => [
                 'UthandoFileManager\Controller\AssetManager',
                 'UthandoFileManager\Controller\FileManager',
+                'UthandoFileManager\Controller\Uploader',
             ],
         ],
     ],
@@ -49,6 +51,20 @@ return [
                                 '__NAMESPACE__' => 'UthandoFileManager\Controller',
                                 'controller'    => 'AssetManager',
                                 'action'        => 'index',
+                            ]
+                        ]
+                    ],
+                    'uploader' => [
+                        'type'      => 'Segment',
+                        'options'   => [
+                            'route' => '/uploader/:action[/id/:id]',
+                            'constraints' => [
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults'  => [
+                                '__NAMESPACE__' => 'UthandoFileManager\Controller',
+                                'controller'    => 'Uploader',
+                                'action'        => 'upload-form',
                             ]
                         ]
                     ],

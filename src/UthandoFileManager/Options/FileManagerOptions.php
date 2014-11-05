@@ -1,6 +1,6 @@
 <?php
 
-namespace UthandoFileManager\Option;
+namespace UthandoFileManager\Options;
 
 use Zend\Stdlib\AbstractOptions;
 
@@ -9,7 +9,11 @@ class FileManagerOptions extends AbstractOptions
     /**
      * @var array
      */
-    protected $allowFileTypes = ['jpg' => 'jpg', 'png' => 'png', 'gif' => 'gif'];
+    protected $allowImageTypes = [
+        'gif' => 'image/gif',
+        'jpg' => 'image/jpeg',
+        'png' => 'image/png',
+    ];
 
     /**
      * @var string
@@ -57,9 +61,14 @@ class FileManagerOptions extends AbstractOptions
     protected $resizeOverSized = false;
 
     /**
+     * @var int
+     */
+    protected $defaultFilePermissions = '644';
+
+    /**
      * @var string
      */
-    protected $destination = '/tmp';
+    protected $destination = './public/userfiles/';
 
     /**
      * @var bool
@@ -67,19 +76,19 @@ class FileManagerOptions extends AbstractOptions
     protected $overwrite = false;
 
     /**
-     * @param array $allowFileTypes
+     * @param array $allowImageTypes
      */
-    public function setAllowFileTypes($allowFileTypes)
+    public function setAllowImageTypes($allowImageTypes)
     {
-        $this->allowFileTypes = $allowFileTypes;
+        $this->allowImageTypes = $allowImageTypes;
     }
 
     /**
      * @return array
      */
-    public function getAllowFileTypes()
+    public function getAllowImageTypes()
     {
-        return $this->allowFileTypes;
+        return $this->allowImageTypes;
     }
 
     /**
@@ -256,5 +265,23 @@ class FileManagerOptions extends AbstractOptions
     public function getUseMin()
     {
         return $this->useMin;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDefaultFilePermissions()
+    {
+        return $this->defaultFilePermissions;
+    }
+
+    /**
+     * @param $defaultFilePermissions
+     * @return $this
+     */
+    public function setDefaultFilePermissions($defaultFilePermissions)
+    {
+        $this->defaultFilePermissions = $defaultFilePermissions;
+        return $this;
     }
 } 

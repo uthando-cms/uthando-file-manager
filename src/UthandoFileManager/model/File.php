@@ -1,12 +1,12 @@
 <?php
-namespace UthandoFileManager\model;
+namespace UthandoFileManager\Model;
 
 use UthandoCommon\Model\Model;
 use UthandoCommon\Model\ModelInterface;
 
 class File implements ModelInterface
 {
-    use Model
+    use Model;
 
     /**
      * @var string

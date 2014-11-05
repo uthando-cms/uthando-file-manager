@@ -1,6 +1,8 @@
 <?php
 
 return [
-    'UthandoFileManagerFile'    => 'UthandoFileManager\Model\File',
-    'UthandoFileManagerImage'   => 'UthandoFileManager\Model\Image',
+    'invokables' => [
+        'UthandoFileManagerFile'    => 'UthandoFileManager\Model\File',
+        'UthandoFileManagerImage'   => 'UthandoFileManager\Model\Image',
+    ],
 ];

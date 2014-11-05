@@ -11,7 +11,7 @@ class Module
         $app            = $event->getApplication();
         $eventManager   = $app->getEventManager();
 
-        $eventManager->attach(MvcEvent::EVENT_ROUTE, [$this, 'startSession'],100);
+        $eventManager->attach(MvcEvent::EVENT_ROUTE, [$this, 'startSession'],100000);
     }
 
     public function startSession(MvcEvent $event)
@@ -63,6 +63,11 @@ class Module
     public function getInputFilterConfig()
     {
         return include __DIR__ . '/config/inputFilter.config.php';
+    }
+
+    public function getValidatorConfig()
+    {
+        return include __DIR__ . '/config/validator.config.php';
     }
 
     public function getUthandoModelConfig()
