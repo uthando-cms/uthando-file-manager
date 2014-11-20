@@ -73,9 +73,6 @@ return [
         ],
     ],
     'view_manager'  => [
-        'strategies' => [
-            'ViewJsonStrategy',
-        ],
         'template_map' => include __DIR__ . '/../template_map.php'
     ],
 ];
