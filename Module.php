@@ -2,6 +2,7 @@
 
 namespace UthandoFileManager;
 
+use Zend\Http\Request;
 use Zend\Mvc\MvcEvent;
 
 class Module
@@ -19,7 +20,7 @@ class Module
         // this is for use when uploading via flash
         $request = $event->getRequest();
 
-        if ($request->isFlashRequest() && $request->isPost()) {
+        if ($request instanceof Request && $request->isFlashRequest() && $request->isPost()) {
             try {
                 $sid = $request->getPost('sid', null);
 
