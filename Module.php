@@ -24,7 +24,7 @@ class Module
             try {
                 $sid = $request->getPost('sid', null);
 
-                if (sid) {
+                if ($sid) {
                     $session = $event->getApplication()
                         ->getServiceManager()
                         ->get('UthandoSessionManager\SessionManager');
