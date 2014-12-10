@@ -21,9 +21,6 @@ class Image extends InputFilter
                     'extension' => $allowedExtensions,
                     'case'      => true,
                 ]],
-                ['name' => 'FileIsImage', 'options' => [
-                    'mimeType'  => $allowedMimeTypes,
-                ]],
                 ['name' => 'FileImageSize', 'options' => [
                     'minWidth'  => ($options->getUseMin()) ? $options->getMinWidth() : null,
                     'minHeight' => ($options->getUseMin()) ? $options->getMinHeight() : null,
@@ -40,5 +37,15 @@ class Image extends InputFilter
                 ]],
             ],
         ]);
+
+        // some web hosts have disabled fileinfo, so we check it's there
+        // first before adding FileIsImage validator as it depends
+        // on SPL FileInfo or mime_content_type function.
+        if (extension_loaded('fileinfo') || function_exists('mime_content_type')) {
+            $this->get('image-file')->getValidatorChain()
+                ->attachByName('FileIsImage', [
+                    'mimeType'  => $allowedMimeTypes,
+                ]);
+        }
     }
 } 
