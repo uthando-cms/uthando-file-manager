@@ -81,6 +81,11 @@ class Module
         return include __DIR__ . '/config/service.config.php';
     }
 
+    public function getUthandoServiceConfig()
+    {
+        return include __DIR__ . '/config/uthandoServices.config.php';
+    }
+
     public function getAutoloaderConfig()
     {
         return array(

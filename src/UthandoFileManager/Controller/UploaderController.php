@@ -16,7 +16,9 @@ class UploaderController extends AbstractActionController
         $viewModel->setTerminal(true);
 
         /* @var $service \UthandoFileManager\Service\ImageUploader */
-        $service = $this->getServiceLocator()->get('UthandoFileManager\Service\ImageUploader');
+        $service = $this->getServiceLocator()
+            ->get('UthandoServiceManager')
+            ->get('UthandoFileManagerImage');
 
         $request = $this->getRequest();
         if ($request->isPost()) {
