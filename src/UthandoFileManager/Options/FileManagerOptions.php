@@ -10,10 +10,16 @@ class FileManagerOptions extends AbstractOptions
      * @var array
      */
     protected $allowImageTypes = [
-        'gif' => 'image/gif',
-        'jpg' => 'image/jpeg',
-        'png' => 'image/png',
+        'gif'   => 'image/gif',
+        'jpg'   => 'image/jpeg',
+        'jpeg'  => 'image/jpeg',
+        'png'   => 'image/png',
     ];
+    
+    /**
+     * @var bool
+     */
+    protected $caseSensitive = false;
 
     /**
      * @var string
@@ -89,6 +95,24 @@ class FileManagerOptions extends AbstractOptions
     public function getAllowImageTypes()
     {
         return $this->allowImageTypes;
+    }
+
+    /**
+     * @return boolean $caseSensitive
+     */
+    public function getCaseSensitive()
+    {
+        return $this->caseSensitive;
+    }
+
+    /**
+     * @param boolean $caseSensitive
+     * @return $this
+     */
+    public function setCaseSensitive($caseSensitive)
+    {
+        $this->caseSensitive = $caseSensitive;
+        return $this;
     }
 
     /**

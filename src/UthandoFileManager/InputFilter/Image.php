@@ -19,7 +19,7 @@ class Image extends InputFilter
                 ['name' => 'FileUploadFile'],
                 ['name' => 'FileExtension', 'options' => [
                     'extension' => $allowedExtensions,
-                    'case'      => true,
+                    'case'      => $options->getCaseSensitive(),
                 ]],
                 ['name' => 'FileImageSize', 'options' => [
                     'minWidth'  => ($options->getUseMin()) ? $options->getMinWidth() : null,
