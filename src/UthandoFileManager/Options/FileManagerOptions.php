@@ -80,6 +80,21 @@ class FileManagerOptions extends AbstractOptions
      * @var bool
      */
     protected $overwrite = false;
+    
+    /**
+     * @var bool
+     */
+    protected $createThumbnail = false;
+    
+    /**
+     * @var int
+     */
+    protected $thumbnailHeight = 300;
+    
+    /**
+     * @var int
+     */
+    protected $thumbnailWidth = 300;
 
     /**
      * @param array $allowImageTypes
