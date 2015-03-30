@@ -49,7 +49,7 @@ class FileManagerOptions extends AbstractOptions
     /**
      * @var int
      */
-    protected $minHeight = 128;
+    protected $minHeight = 100;
 
     /**
      * @var int
