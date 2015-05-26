@@ -45,10 +45,6 @@ return [
         ],
     ],
     'service_manager' => [
-        'invokables' => [
-            'UthandoFileManager\Service\ImageUploader'  => 'UthandoFileManager\Service\ImageUploader',
-            'UthandoFileManager\Service\Uploader'       => 'UthandoFileManager\Service\Uploader',
-        ],
         'factories' => [
             'UthandoFileManager\Options\FileManager'    => 'UthandoFileManager\Service\Factory\FileManagerOptions',
         ],
@@ -58,6 +54,12 @@ return [
             'UthandoFileManagerFile'    => 'UthandoFileManager\Model\File',
             'UthandoFileManagerImage'   => 'UthandoFileManager\Model\Image',
         ],
+    ],
+    'uthando_services' => [
+        'invokables' => [
+            'UthandoFileManagerImage'   => 'UthandoFileManager\Service\ImageUploader',
+    '       UthandoFileManagerUploader' => 'UthandoFileManager\Service\Uploader',
+        ]
     ],
     'validators' => [
         'invokables' => [
