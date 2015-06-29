@@ -1,5 +1,12 @@
 <?php
 return [
+    'asset_manager' => [
+        'resolver_configs' => [
+            'paths' => [
+                'UthandoFileManager' => __DIR__ . '/../public',
+            ],
+        ],
+    ],
     'uthando_user' => [
         'acl' => [
             'roles' => [
