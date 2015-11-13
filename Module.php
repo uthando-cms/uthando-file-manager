@@ -23,7 +23,7 @@ use Zend\Mvc\MvcEvent;
 class Module implements ConfigInterface
 {
     use ConfigTrait;
-    
+
     /**
      * @param MvcEvent $event
      */
