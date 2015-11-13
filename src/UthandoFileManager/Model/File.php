@@ -1,9 +1,23 @@
 <?php
+/**
+ * Uthando CMS (http://www.shaunfreeman.co.uk/)
+ *
+ * @package   UthandoFileManager\Model
+ * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
+ * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
+ * @license   see LICENSE
+ */
+
 namespace UthandoFileManager\Model;
 
 use UthandoCommon\Model\Model;
 use UthandoCommon\Model\ModelInterface;
 
+/**
+ * Class File
+ *
+ * @package UthandoFileManager\Model
+ */
 class File implements ModelInterface
 {
     use Model;
@@ -106,18 +120,18 @@ class File implements ModelInterface
     }
 
     /**
-     * @param int $error
-     */
-    public function setError($error)
-    {
-        $this->error = $error;
-    }
-
-    /**
      * @return int
      */
     public function getError()
     {
         return $this->error;
+    }
+
+    /**
+     * @param int $error
+     */
+    public function setError($error)
+    {
+        $this->error = $error;
     }
 } 

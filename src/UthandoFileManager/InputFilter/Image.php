@@ -1,10 +1,23 @@
 <?php
+/**
+ * Uthando CMS (http://www.shaunfreeman.co.uk/)
+ *
+ * @package   UthandoFileManager\InputFilter
+ * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
+ * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
+ * @license   see LICENSE
+ */
 
 namespace UthandoFileManager\InputFilter;
 
 use UthandoFileManager\Options\FileManagerOptions;
 use Zend\InputFilter\InputFilter;
 
+/**
+ * Class Image
+ *
+ * @package UthandoFileManager\InputFilter
+ */
 class Image extends InputFilter
 {
     public function addImageFile(FileManagerOptions $options)
@@ -13,27 +26,27 @@ class Image extends InputFilter
         $allowedMimeTypes = array_values($options->getAllowImageTypes());
 
         $this->add([
-            'name'          => 'image-file',
-            'required'      => true,
-            'validators'    => [
+            'name' => 'image-file',
+            'required' => true,
+            'validators' => [
                 ['name' => 'FileUploadFile'],
                 ['name' => 'FileExtension', 'options' => [
                     'extension' => $allowedExtensions,
-                    'case'      => $options->getCaseSensitive(),
+                    'case' => $options->getCaseSensitive(),
                 ]],
                 ['name' => 'FileImageSize', 'options' => [
-                    'minWidth'  => ($options->getUseMin()) ? $options->getMinWidth() : null,
+                    'minWidth' => ($options->getUseMin()) ? $options->getMinWidth() : null,
                     'minHeight' => ($options->getUseMin()) ? $options->getMinHeight() : null,
-                    'maxWidth'  => ($options->getUseMax()) ? $options->getMaxWidth() : null,
+                    'maxWidth' => ($options->getUseMax()) ? $options->getMaxWidth() : null,
                     'maxHeight' => ($options->getUseMax()) ? $options->getMaxHeight() : null,
                 ]],
             ],
             'filters' => [
                 ['name' => 'FileRenameUpload', 'options' => [
-                    'target'                => $options->getDestination(),
-                    'useUploadName'         => true,
-                    'useUploadExtension'    => true,
-                    'overwrite'             => true,
+                    'target' => $options->getDestination(),
+                    'useUploadName' => true,
+                    'useUploadExtension' => true,
+                    'overwrite' => true,
                 ]],
             ],
         ]);
@@ -44,7 +57,7 @@ class Image extends InputFilter
         if (extension_loaded('fileinfo') || function_exists('mime_content_type')) {
             $this->get('image-file')->getValidatorChain()
                 ->attachByName('FileIsImage', [
-                    'mimeType'  => $allowedMimeTypes,
+                    'mimeType' => $allowedMimeTypes,
                 ]);
         }
     }

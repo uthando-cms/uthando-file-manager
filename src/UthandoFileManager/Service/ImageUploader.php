@@ -1,10 +1,23 @@
 <?php
+/**
+ * Uthando CMS (http://www.shaunfreeman.co.uk/)
+ *
+ * @package   UthandoFileManager\Service
+ * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
+ * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
+ * @license   see LICENSE
+ */
 
 namespace UthandoFileManager\Service;
 
 use UthandoFileManager\Model\Image as ImageModel;
 use UthandoFileManager\UthandoFileManagerException;
 
+/**
+ * Class ImageUploader
+ *
+ * @package UthandoFileManager\Service
+ */
 class ImageUploader extends Uploader
 {
     const MAX_WIDTH             = 'MaxWidth';
@@ -23,7 +36,7 @@ class ImageUploader extends Uploader
         self::MIME_NOT_SUPPORTED    => 'Image type %s is not supported for resizing.'
     ];
 
-    protected $serviceAlias     = 'UthandoFileManagerImage';
+    protected $serviceAlias = 'UthandoFileManagerImage';
 
     /**
      * @param $data
@@ -34,7 +47,7 @@ class ImageUploader extends Uploader
 
         /* @var $model \UthandoFileManager\Model\Image */
         $model = $this->getModel();
-        $form  = $this->getForm(null, $data, true, false);
+        $form = $this->getForm(null, $data, true, false);
 
         $options = $this->getOptions();
 
@@ -127,4 +140,4 @@ class ImageUploader extends Uploader
 
         return $image;
     }
-} 
+}

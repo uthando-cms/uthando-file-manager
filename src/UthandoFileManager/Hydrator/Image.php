@@ -1,10 +1,23 @@
 <?php
+/**
+ * Uthando CMS (http://www.shaunfreeman.co.uk/)
+ *
+ * @package   UthandoFileManager\Hydrator
+ * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
+ * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
+ * @license   see LICENSE
+ */
 
 namespace UthandoFileManager\Hydrator;
 
 use UthandoFileManager\Model\Image as ImageModel;
 use Zend\Hydrator\AbstractHydrator;
 
+/**
+ * Class Image
+ *
+ * @package UthandoFileManager\Hydrator
+ */
 class Image extends AbstractHydrator
 {
     /**
@@ -16,12 +29,12 @@ class Image extends AbstractHydrator
     public function extract($object)
     {
         return [
-            'name'      => $object->getFileName(),
-            'type'      => $object->getType(),
-            'size'      => $object->getSize(),
-            'tmp_name'  => $object->getTempName(),
-            'error'     => $object->getError(),
-            'size'      => [
+            'name' => $object->getFileName(),
+            'type' => $object->getType(),
+            'size' => $object->getSize(),
+            'tmp_name' => $object->getTempName(),
+            'error' => $object->getError(),
+            'size' => [
                 0 => $object->getWidth(),
                 1 => $object->getHeight(),
                 2 => $object->getMimeType(),

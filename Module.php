@@ -1,12 +1,32 @@
 <?php
+/**
+ * Uthando CMS (http://www.shaunfreeman.co.uk/)
+ *
+ * @package   UthandoFileManager
+ * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
+ * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
+ * @license   see LICENSE
+ */
 
 namespace UthandoFileManager;
 
+use UthandoCommon\Config\ConfigInterface;
+use UthandoCommon\Config\ConfigTrait;
 use Zend\Http\Request;
 use Zend\Mvc\MvcEvent;
 
-class Module
+/**
+ * Class Module
+ *
+ * @package UthandoFileManager
+ */
+class Module implements ConfigInterface
 {
+    use ConfigTrait;
+    
+    /**
+     * @param MvcEvent $event
+     */
     public function onBootstrap(MvcEvent $event)
     {
         $app            = $event->getApplication();
@@ -15,6 +35,9 @@ class Module
         $eventManager->attach(MvcEvent::EVENT_ROUTE, [$this, 'startSession'],100000);
     }
 
+    /**
+     * @param MvcEvent $event
+     */
     public function startSession(MvcEvent $event)
     {
         // this is for use when uploading via flash
@@ -41,11 +64,17 @@ class Module
 
     }
 
+    /**
+     * @return array
+     */
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
     }
 
+    /**
+     * @return array
+     */
     public function getAutoloaderConfig()
     {
         return array(

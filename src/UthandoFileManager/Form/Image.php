@@ -1,9 +1,22 @@
 <?php
+/**
+ * Uthando CMS (http://www.shaunfreeman.co.uk/)
+ *
+ * @package   UthandoFileManager\Form
+ * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
+ * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
+ * @license   see LICENSE
+ */
 
 namespace UthandoFileManager\Form;
 
 use Zend\Form\Form;
 
+/**
+ * Class Image
+ *
+ * @package UthandoFileManager\Form
+ */
 class Image extends Form
 {
     public function init()
@@ -14,8 +27,8 @@ class Image extends Form
             'attributes' => [
                 'id' => 'image-file',
             ],
-            'options'		=> [
-                'label'	=> 'Browse...',
+            'options' => [
+                'label' => 'Browse...',
             ],
         ]);
     }

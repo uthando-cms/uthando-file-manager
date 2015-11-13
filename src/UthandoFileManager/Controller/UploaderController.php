@@ -1,4 +1,12 @@
 <?php
+/**
+ * Uthando CMS (http://www.shaunfreeman.co.uk/)
+ *
+ * @package   UthandoFileManager\Controller
+ * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
+ * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
+ * @license   see LICENSE
+ */
 
 namespace UthandoFileManager\Controller;
 
@@ -8,6 +16,11 @@ use Zend\ProgressBar\Upload\SessionProgress;
 use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 
+/**
+ * Class UploaderController
+ *
+ * @package UthandoFileManager\Controller
+ */
 class UploaderController extends AbstractActionController
 {
     public function uploadFormAction()
@@ -32,14 +45,14 @@ class UploaderController extends AbstractActionController
 
             if ($result instanceof Form) {
                 return new JsonModel([
-                    'status'     => false,
+                    'status' => false,
                     'formErrors' => $result->getMessages(),
-                    'formData'   => $result->getData(),
+                    'formData' => $result->getData(),
                 ]);
             } else {
                 return new JsonModel([
-                    'status'    => true,
-                    'image'     => $result,
+                    'status' => true,
+                    'image' => $result,
                 ]);
             }
         }

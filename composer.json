@@ -20,9 +20,10 @@
     }
   ],
   "require": {
-    "php": ">=5.4",
+    "php": ">=7.0",
     "zendframework/zend-progressbar": "2.*",
-    "uthando-cms/uthando-common": "2.*"
+    "uthando-cms/uthando-common": "2.*",
+    "rwoverdijk/assetmanager": "1.*"
   },
   "require-dev": {
     "zendframework/zendframework": "2.*"

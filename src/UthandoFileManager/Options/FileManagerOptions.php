@@ -1,21 +1,34 @@
 <?php
+/**
+ * Uthando CMS (http://www.shaunfreeman.co.uk/)
+ *
+ * @package   UthandoFileManager\Options
+ * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
+ * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
+ * @license   see LICENSE
+ */
 
 namespace UthandoFileManager\Options;
 
 use Zend\Stdlib\AbstractOptions;
 
+/**
+ * Class FileManagerOptions
+ *
+ * @package UthandoFileManager\Options
+ */
 class FileManagerOptions extends AbstractOptions
 {
     /**
      * @var array
      */
     protected $allowImageTypes = [
-        'gif'   => 'image/gif',
-        'jpg'   => 'image/jpeg',
-        'jpeg'  => 'image/jpeg',
-        'png'   => 'image/png',
+        'gif' => 'image/gif',
+        'jpg' => 'image/jpeg',
+        'jpeg' => 'image/jpeg',
+        'png' => 'image/png',
     ];
-    
+
     /**
      * @var bool
      */
@@ -80,29 +93,21 @@ class FileManagerOptions extends AbstractOptions
      * @var bool
      */
     protected $overwrite = false;
-    
+
     /**
      * @var bool
      */
     protected $createThumbnail = false;
-    
+
     /**
      * @var int
      */
     protected $thumbnailHeight = 300;
-    
+
     /**
      * @var int
      */
     protected $thumbnailWidth = 300;
-
-    /**
-     * @param array $allowImageTypes
-     */
-    public function setAllowImageTypes($allowImageTypes)
-    {
-        $this->allowImageTypes = $allowImageTypes;
-    }
 
     /**
      * @return array
@@ -110,6 +115,14 @@ class FileManagerOptions extends AbstractOptions
     public function getAllowImageTypes()
     {
         return $this->allowImageTypes;
+    }
+
+    /**
+     * @param array $allowImageTypes
+     */
+    public function setAllowImageTypes($allowImageTypes)
+    {
+        $this->allowImageTypes = $allowImageTypes;
     }
 
     /**
@@ -131,6 +144,14 @@ class FileManagerOptions extends AbstractOptions
     }
 
     /**
+     * @return boolean
+     */
+    public function getConvertToDefault()
+    {
+        return $this->convertToDefault;
+    }
+
+    /**
      * @param boolean $convertToDefault
      */
     public function setConvertToDefault($convertToDefault)
@@ -139,11 +160,11 @@ class FileManagerOptions extends AbstractOptions
     }
 
     /**
-     * @return boolean
+     * @return string
      */
-    public function getConvertToDefault()
+    public function getDefaultFileType()
     {
-        return $this->convertToDefault;
+        return $this->defaultFileType;
     }
 
     /**
@@ -157,9 +178,9 @@ class FileManagerOptions extends AbstractOptions
     /**
      * @return string
      */
-    public function getDefaultFileType()
+    public function getDestination()
     {
-        return $this->defaultFileType;
+        return $this->destination;
     }
 
     /**
@@ -171,11 +192,11 @@ class FileManagerOptions extends AbstractOptions
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getDestination()
+    public function getMaxHeight()
     {
-        return $this->destination;
+        return $this->maxHeight;
     }
 
     /**
@@ -189,9 +210,9 @@ class FileManagerOptions extends AbstractOptions
     /**
      * @return int
      */
-    public function getMaxHeight()
+    public function getMaxWidth()
     {
-        return $this->maxHeight;
+        return $this->maxWidth;
     }
 
     /**
@@ -205,9 +226,9 @@ class FileManagerOptions extends AbstractOptions
     /**
      * @return int
      */
-    public function getMaxWidth()
+    public function getMinHeight()
     {
-        return $this->maxWidth;
+        return $this->minHeight;
     }
 
     /**
@@ -221,9 +242,9 @@ class FileManagerOptions extends AbstractOptions
     /**
      * @return int
      */
-    public function getMinHeight()
+    public function getMinWidth()
     {
-        return $this->minHeight;
+        return $this->minWidth;
     }
 
     /**
@@ -235,11 +256,11 @@ class FileManagerOptions extends AbstractOptions
     }
 
     /**
-     * @return int
+     * @return boolean
      */
-    public function getMinWidth()
+    public function getOverwrite()
     {
-        return $this->minWidth;
+        return $this->overwrite;
     }
 
     /**
@@ -253,9 +274,9 @@ class FileManagerOptions extends AbstractOptions
     /**
      * @return boolean
      */
-    public function getOverwrite()
+    public function getResizeOverSized()
     {
-        return $this->overwrite;
+        return $this->resizeOverSized;
     }
 
     /**
@@ -269,9 +290,9 @@ class FileManagerOptions extends AbstractOptions
     /**
      * @return boolean
      */
-    public function getResizeOverSized()
+    public function getUseMax()
     {
-        return $this->resizeOverSized;
+        return $this->useMax;
     }
 
     /**
@@ -285,9 +306,9 @@ class FileManagerOptions extends AbstractOptions
     /**
      * @return boolean
      */
-    public function getUseMax()
+    public function getUseMin()
     {
-        return $this->useMax;
+        return $this->useMin;
     }
 
     /**
@@ -296,14 +317,6 @@ class FileManagerOptions extends AbstractOptions
     public function setUseMin($useMin)
     {
         $this->useMin = $useMin;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getUseMin()
-    {
-        return $this->useMin;
     }
 
     /**

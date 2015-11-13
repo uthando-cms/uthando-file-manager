@@ -1,6 +1,20 @@
 <?php
+/**
+ * Uthando CMS (http://www.shaunfreeman.co.uk/)
+ *
+ * @package   UthandoFileManager\Model
+ * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
+ * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
+ * @license   see LICENSE
+ */
+
 namespace UthandoFileManager\Model;
 
+/**
+ * Class Image
+ *
+ * @package UthandoFileManager\Model
+ */
 class Image extends File
 {
     /**
