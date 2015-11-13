@@ -7,7 +7,23 @@ use UthandoFileManager\UthandoFileManagerException;
 
 class ImageUploader extends Uploader
 {
-    protected $serviceAlias = 'UthandoFileManagerImage';
+    const MAX_WIDTH             = 'MaxWidth';
+    const MAX_HEIGHT            = 'MaxHeight';
+    const MIN_WIDTH             = 'MinHeight';
+    const MIN_HEIGHT            = 'MinHeight';
+    const NO_RESIZE             = 'NoResize';
+    const MIME_NOT_SUPPORTED    = 'MimeNotSupported';
+
+    protected $messageTemplates = [
+        self::MAX_WIDTH             => 'Image exceeds max width: %s',
+        self::MAX_HEIGHT            => 'Image exceeds max height: %s',
+        self::MIN_WIDTH             => 'Image is below the min width: %s',
+        self::MIN_HEIGHT            => 'Image is below the min height: %s',
+        self::NO_RESIZE             => '%s - Options do not allow resize',
+        self::MIME_NOT_SUPPORTED    => 'Image type %s is not supported for resizing.'
+    ];
+
+    protected $serviceAlias     = 'UthandoFileManagerImage';
 
     /**
      * @param $data

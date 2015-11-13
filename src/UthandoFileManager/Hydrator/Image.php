@@ -2,20 +2,21 @@
 
 namespace UthandoFileManager\Hydrator;
 
-use Zend\Stdlib\Hydrator\AbstractHydrator;
+use UthandoFileManager\Model\Image as ImageModel;
+use Zend\Hydrator\AbstractHydrator;
 
 class Image extends AbstractHydrator
 {
     /**
-     * Extract values from \UthandoFileManager\Model\Image object
+     * Extract values from model
      *
-     * @param  \UthandoFileManager\Model\Image $object
+     * @param  ImageModel $object
      * @return array
      */
     public function extract($object)
     {
         return [
-            'name'  => $object->getFileName(),
+            'name'      => $object->getFileName(),
             'type'      => $object->getType(),
             'size'      => $object->getSize(),
             'tmp_name'  => $object->getTempName(),
@@ -29,11 +30,11 @@ class Image extends AbstractHydrator
     }
 
     /**
-     * Hydrate \UthandoFileManager\Model\Image with the provided $data
+     * Hydrate model with the provided $data
      * from file upload.
      *
      * @param  array $data
-     * @param  \UthandoFileManager\Model\Image $object
+     * @param  ImageModel $object
      * @return object
      */
     public function hydrate(array $data, $object)

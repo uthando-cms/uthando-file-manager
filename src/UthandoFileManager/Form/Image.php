@@ -15,7 +15,7 @@ class Image extends Form
                 'id' => 'image-file',
             ],
             'options'		=> [
-                'label'			=> 'Browse...',
+                'label'	=> 'Browse...',
             ],
         ]);
     }

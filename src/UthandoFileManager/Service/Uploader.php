@@ -8,13 +8,6 @@ class Uploader extends AbstractService
 {
     const DIR_NOT_WRITABLE      = 'DirNotWritable';
     const FILE_EXISTS           = 'FileAlreadyExists';
-    const MAX_WIDTH             = 'MaxWidth';
-    const MAX_HEIGHT            = 'MaxHeight';
-    const MIN_WIDTH             = 'MinHeight';
-    const MIN_HEIGHT            = 'MinHeight';
-    const NO_RESIZE             = 'NoResize';
-
-    const MIME_NOT_SUPPORTED    = 'MimeNotSupported';
 
     protected $messageTemplates = [
         UPLOAD_ERR_INI_SIZE         => 'The uploaded file exceeds the upload_max_filesize directive in php.ini',
@@ -25,16 +18,8 @@ class Uploader extends AbstractService
         UPLOAD_ERR_NO_TMP_DIR       => 'Missing a temporary folder',
         UPLOAD_ERR_CANT_WRITE       => 'Failed to write file to disk',
         UPLOAD_ERR_EXTENSION        => 'File upload stopped by extension',
-
         self::DIR_NOT_WRITABLE      => 'Directory not writable: %s',
         self::FILE_EXISTS           => 'File already exists: %s - Options do not allow to overwrite',
-        self::MAX_WIDTH             => 'Image exceeds max width: %s',
-        self::MAX_HEIGHT            => 'Image exceeds max height: %s',
-        self::MIN_WIDTH             => 'Image is below the min width: %s',
-        self::MIN_HEIGHT            => 'Image is below the min height: %s',
-        self::NO_RESIZE             => '%s - Options do not allow resize',
-
-        self::MIME_NOT_SUPPORTED    => 'Image type %s is not supported for resizing.'
     ];
 
     /**

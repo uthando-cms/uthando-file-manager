@@ -64,8 +64,8 @@ return [
     ],
     'uthando_services' => [
         'invokables' => [
-            'UthandoFileManagerImage'   => 'UthandoFileManager\Service\ImageUploader',
-    '       UthandoFileManagerUploader' => 'UthandoFileManager\Service\Uploader',
+            'UthandoFileManagerImage'       => 'UthandoFileManager\Service\ImageUploader',
+            'UthandoFileManagerUploader'    => 'UthandoFileManager\Service\Uploader',
         ]
     ],
     'validators' => [

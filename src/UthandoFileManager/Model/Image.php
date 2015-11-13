@@ -19,6 +19,11 @@ class Image extends File
     protected $mimeType;
 
     /**
+     * @var string
+     */
+    protected $thumbnail;
+
+    /**
      * @return string
      */
     function getWidth()
@@ -69,6 +74,24 @@ class Image extends File
     public function setMimeType($mimeType)
     {
         $this->mimeType = $mimeType;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
+
+    /**
+     * @param string $thumbnail
+     * @return $this
+     */
+    public function setThumbnail($thumbnail)
+    {
+        $this->thumbnail = $thumbnail;
         return $this;
     }
 }
