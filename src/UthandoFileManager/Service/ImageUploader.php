@@ -20,23 +20,32 @@ use UthandoFileManager\UthandoFileManagerException;
  */
 class ImageUploader extends Uploader
 {
-    const MAX_WIDTH             = 'MaxWidth';
-    const MAX_HEIGHT            = 'MaxHeight';
-    const MIN_WIDTH             = 'MinHeight';
-    const MIN_HEIGHT            = 'MinHeight';
-    const NO_RESIZE             = 'NoResize';
-    const MIME_NOT_SUPPORTED    = 'MimeNotSupported';
+    const MAX_WIDTH = 'MaxWidth';
+    const MAX_HEIGHT = 'MaxHeight';
+    const MIN_WIDTH = 'MinHeight';
+    const MIN_HEIGHT = 'MinHeight';
+    const NO_RESIZE = 'NoResize';
+    const MIME_NOT_SUPPORTED = 'MimeNotSupported';
 
-    protected $messageTemplates = [
-        self::MAX_WIDTH             => 'Image exceeds max width: %s',
-        self::MAX_HEIGHT            => 'Image exceeds max height: %s',
-        self::MIN_WIDTH             => 'Image is below the min width: %s',
-        self::MIN_HEIGHT            => 'Image is below the min height: %s',
-        self::NO_RESIZE             => '%s - Options do not allow resize',
-        self::MIME_NOT_SUPPORTED    => 'Image type %s is not supported for resizing.'
-    ];
-
+    /**
+     * @var string
+     */
     protected $serviceAlias = 'UthandoFileManagerImage';
+
+    /**
+     * ImageUploader constructor.
+     */
+    public function __construct()
+    {
+        $this->messageTemplates = array_merge($this->messageTemplates, [
+            self::MAX_WIDTH => 'Image exceeds max width: %s',
+            self::MAX_HEIGHT => 'Image exceeds max height: %s',
+            self::MIN_WIDTH => 'Image is below the min width: %s',
+            self::MIN_HEIGHT => 'Image is below the min height: %s',
+            self::NO_RESIZE => '%s - Options do not allow resize',
+            self::MIME_NOT_SUPPORTED => 'Image type %s is not supported for resizing.'
+        ]);
+    }
 
     /**
      * @param $data
@@ -75,69 +84,82 @@ class ImageUploader extends Uploader
 
         $this->getEventManager()->trigger('post.upload', $this, $this->prepareEventArguments($argv));
 
+        if (true === $this->getOptions()->getResizeOverSized()) {
+            $this->resizeImage($model);
+        }
+
         return $hydrator->extract($model);
     }
 
     /**
-     * @param ImageModel $image
+     * @param ImageModel $model
+     * @return ImageModel
+     */
+    public function generateThumbnail(ImageModel $model)
+    {
+        return $model;
+    }
+
+    /**
+     * @param ImageModel $model
      * @return ImageModel
      * @throws UthandoFileManagerException
      */
-    public function resizeImage(ImageModel $image)
+    public function resizeImage(ImageModel $model)
     {
-        $options = $this->getOptions();
+        $options    = $this->getOptions();
+        $image      = $model->getTempName();
+        $oldX       = $model->getWidth();
+        $oldY       = $model->getHeight();
 
-        $oldX = $image->getWidth();
-        $oldY = $image->getHeight();
-
-        switch ($image->getMimeType()) {
+        switch ($model->getMimeType()) {
             case IMAGETYPE_JPEG:
-                $imageIn = imageCreateFromJpeg($image->getTempName());
+                $imageIn = imageCreateFromJpeg($image);
                 break;
             case IMAGETYPE_PNG:
-                $imageIn = imageCreateFromPng($image->getTempName());
+                $imageIn = imageCreateFromPng($image);
                 break;
             case IMAGETYPE_GIF:
-                $imageIn = imageCreateFromGif($image->getTempName());
+                $imageIn = imageCreateFromGif($image);
                 break;
             default:
-                throw new UthandoFileManagerException($this->error(self::MIME_NOT_SUPPORTED, $image->getMimeType()));
+                throw new UthandoFileManagerException($this->error(self::MIME_NOT_SUPPORTED, $model->getMimeType()));
         }
 
-        if ($image->getWidth() > $options->getMaxWidth()) {
-            $image->setHeight(round(($options->getMaxWidth() * $image->getHeight()) / $image->getWidth()));
-            $image->setWidth($options->getMaxWidth());
+        if ($model->getWidth() > $options->getMaxWidth()) {
+            $model->setHeight(round(($options->getMaxWidth() * $model->getHeight()) / $model->getWidth()));
+            $model->setWidth($options->getMaxWidth());
         }
 
-        if ($image->getHeight() > $options->getMaxHeight()) {
-            $image->setWidth(round(($image->getWidth() * $options->getMaxHeight()) / $image->getHeight()));
-            $image->setHeight($options->getMaxHeight());
+        if ($model->getHeight() > $options->getMaxHeight()) {
+            $model->setWidth(round(($model->getWidth() * $options->getMaxHeight()) / $model->getHeight()));
+            $model->setHeight($options->getMaxHeight());
         }
 
-        $imageOut = imageCreateTrueColor($image->getWidth(), $image->getHeight());
+        $imageOut = imageCreateTrueColor($model->getWidth(), $model->getHeight());
 
         imageCopyResampled(
             $imageOut, $imageIn,
             0, 0, 0, 0,
-            $image->getWidth(), $image->getHeight(),
+            $model->getWidth(), $model->getHeight(),
             $oldX, $oldY
         );
 
-        switch ($image->getMimeType()) {
+        switch ($model->getMimeType()) {
             case IMAGETYPE_JPEG:
-                imageJpeg($imageOut, $image->getTempName());
+                imageJpeg($imageOut, $image);
                 break;
             case IMAGETYPE_PNG:
-                imagePng($imageOut, $image->getTempName());
+                imagePng($imageOut, $image);
                 break;
             case IMAGETYPE_GIF:
-                imageGif($imageOut, $image->getTempName());
+                imageGif($imageOut, $image);
                 break;
         }
 
         imageDestroy($imageIn);
         imageDestroy($imageOut);
 
-        return $image;
+        return $model;
     }
 }

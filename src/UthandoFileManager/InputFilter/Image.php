@@ -34,22 +34,33 @@ class Image extends InputFilter
                     'extension' => $allowedExtensions,
                     'case' => $options->getCaseSensitive(),
                 ]],
-                ['name' => 'FileImageSize', 'options' => [
-                    'minWidth' => ($options->getUseMin()) ? $options->getMinWidth() : null,
-                    'minHeight' => ($options->getUseMin()) ? $options->getMinHeight() : null,
-                    'maxWidth' => ($options->getUseMax()) ? $options->getMaxWidth() : null,
-                    'maxHeight' => ($options->getUseMax()) ? $options->getMaxHeight() : null,
-                ]],
             ],
             'filters' => [
                 ['name' => 'FileRenameUpload', 'options' => [
                     'target' => $options->getDestination(),
                     'useUploadName' => true,
                     'useUploadExtension' => true,
-                    'overwrite' => true,
+                    'overwrite' => $options->getOverwrite(),
                 ]],
             ],
         ]);
+
+        if (false === $options->getResizeOverSized()) {
+            $sizeOptions = [];
+
+            if ($options->getUseMin()) {
+                $sizeOptions['minWidth'] = $options->getMinWidth();
+                $sizeOptions['minHeight'] = $options->getMinHeight();
+            }
+
+            if ($options->getUseMax()) {
+                $sizeOptions['maxWidth'] = $options->getMaxWidth();
+                $sizeOptions['maxHeight'] = $options->getMaxHeight();
+            }
+
+            $this->get('image-file')->getValidatorChain()
+                ->attachByName('FileImageSize', $sizeOptions);
+        }
 
         // some web hosts have disabled fileinfo, so we check it's there
         // first before adding FileIsImage validator as it depends

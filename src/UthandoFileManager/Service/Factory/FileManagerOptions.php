@@ -24,7 +24,8 @@ class FileManagerOptions implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $config = $serviceLocator->get('config');
-        $options = isset($config['uthando_file_manager']) ? $config['uthando_file_manager'] : [];
+        $options = (isset($config['uthando_file_manager']) && isset($config['uthando_file_manager']['options'])) ?
+            $config['uthando_file_manager']['options'] : [];
 
         return new Options($options);
     }

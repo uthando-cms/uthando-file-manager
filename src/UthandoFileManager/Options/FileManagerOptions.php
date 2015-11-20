@@ -100,6 +100,11 @@ class FileManagerOptions extends AbstractOptions
     protected $createThumbnail = false;
 
     /**
+     * @var string
+     */
+    protected $thumbnailDirectory = 'thumbnails';
+
+    /**
      * @var int
      */
     protected $thumbnailHeight = 300;
@@ -334,6 +339,78 @@ class FileManagerOptions extends AbstractOptions
     public function setDefaultFilePermissions($defaultFilePermissions)
     {
         $this->defaultFilePermissions = $defaultFilePermissions;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getCreateThumbnail()
+    {
+        return $this->createThumbnail;
+    }
+
+    /**
+     * @param boolean $createThumbnail
+     * @return $this
+     */
+    public function setCreateThumbnail($createThumbnail)
+    {
+        $this->createThumbnail = $createThumbnail;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getThumbnailDirectory()
+    {
+        return $this->thumbnailDirectory;
+    }
+
+    /**
+     * @param string $thumbnailDirectory
+     * @return $this
+     */
+    public function setThumbnailDirectory($thumbnailDirectory)
+    {
+        $this->thumbnailDirectory = $thumbnailDirectory;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getThumbnailHeight()
+    {
+        return $this->thumbnailHeight;
+    }
+
+    /**
+     * @param int $thumbnailHeight
+     * @return $this
+     */
+    public function setThumbnailHeight($thumbnailHeight)
+    {
+        $this->thumbnailHeight = $thumbnailHeight;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getThumbnailWidth()
+    {
+        return $this->thumbnailWidth;
+    }
+
+    /**
+     * @param int $thumbnailWidth
+     * @return $this
+     */
+    public function setThumbnailWidth($thumbnailWidth)
+    {
+        $this->thumbnailWidth = $thumbnailWidth;
         return $this;
     }
 } 

@@ -34,6 +34,7 @@ class UploaderController extends AbstractActionController
             ->get('UthandoFileManagerImage');
 
         $request = $this->getRequest();
+
         if ($request->isPost()) {
             // Make certain to merge the files info!
             $post = array_merge_recursive(

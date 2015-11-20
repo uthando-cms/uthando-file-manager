@@ -11,12 +11,15 @@ return [
         'invokables' => [
             'UthandoFileManager\Controller\AssetManager'    => 'UthandoFileManager\Controller\AssetManagerController',
             'UthandoFileManager\Controller\FileManager'     => 'UthandoFileManager\Controller\FileManagerController',
+            'UthandoFileManager\Controller\Settings'        => 'UthandoFileManager\Controller\SettingsController',
             'UthandoFileManager\Controller\Uploader'        => 'UthandoFileManager\Controller\UploaderController',
         ],
     ],
     'form_elements' => [
         'invokables' => [
-            'UthandoFileManagerImage' => 'UthandoFileManager\Form\Image',
+            'UthandoFileManagerImage'               => 'UthandoFileManager\Form\Image',
+            'UthandoFileManagerSettings'            => 'UthandoFileManager\Form\Settings',
+            'UthandoFileManagerSettingsFieldSet'    => 'UthandoFileManager\Form\SettingsFieldSet',
         ],
     ],
     'hydrators' => [

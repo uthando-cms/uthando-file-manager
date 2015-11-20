@@ -18,6 +18,21 @@ return [
                                 'action'        => 'index',
                             ],
                         ],
+                        'may_terminate' => true,
+                        'child_routes' => [
+                            'settings' => [
+                                'type'    => 'Segment',
+                                'options' => [
+                                    'route'    => '/settings',
+                                    'defaults' => [
+                                        '__NAMESPACE__' => 'UthandoFileManager\Controller',
+                                        'controller'    => 'Settings',
+                                        'action'        => 'index',
+                                    ],
+                                ],
+                                'may_terminate' => true,
+                            ],
+                        ],
                     ],
                     'asset-manager' => [
                         'type'      => 'Segment',
@@ -30,8 +45,8 @@ return [
                                 '__NAMESPACE__' => 'UthandoFileManager\Controller',
                                 'controller'    => 'AssetManager',
                                 'action'        => 'index',
-                            ]
-                        ]
+                            ],
+                        ],
                     ],
                     'uploader' => [
                         'type'      => 'Segment',
@@ -44,8 +59,8 @@ return [
                                 '__NAMESPACE__' => 'UthandoFileManager\Controller',
                                 'controller'    => 'Uploader',
                                 'action'        => 'upload-form',
-                            ]
-                        ]
+                            ],
+                        ],
                     ],
                 ],
             ],
