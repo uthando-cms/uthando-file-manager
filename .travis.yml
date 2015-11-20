@@ -9,6 +9,7 @@ before_script:
   - git clone git://github.com/uthando-cms/uthando-common.git
   - cd uthando
   - composer install
+  - composer remove uthando-cms/uthando-file-manager
   - cp -R ../uthando-file-manager ./module/UthandoFileManager
   - cp -R ../uthando-common ./module/UthandoCommon
   - cd module/UthandoFileManager/test
