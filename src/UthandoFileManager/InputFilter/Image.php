@@ -26,7 +26,7 @@ class Image extends InputFilter
         $allowedMimeTypes = array_values($options->getAllowImageTypes());
 
         $this->add([
-            'name' => 'image-file',
+            'name' => 'fileupload',
             'required' => true,
             'validators' => [
                 ['name' => 'FileUploadFile'],
@@ -58,7 +58,7 @@ class Image extends InputFilter
                 $sizeOptions['maxHeight'] = $options->getMaxHeight();
             }
 
-            $this->get('image-file')->getValidatorChain()
+            $this->get('fileupload')->getValidatorChain()
                 ->attachByName('FileImageSize', $sizeOptions);
         }
 
@@ -66,7 +66,7 @@ class Image extends InputFilter
         // first before adding FileIsImage validator as it depends
         // on SPL FileInfo or mime_content_type function.
         if (extension_loaded('fileinfo') || function_exists('mime_content_type')) {
-            $this->get('image-file')->getValidatorChain()
+            $this->get('fileupload')->getValidatorChain()
                 ->attachByName('FileIsImage', [
                     'mimeType' => $allowedMimeTypes,
                 ]);

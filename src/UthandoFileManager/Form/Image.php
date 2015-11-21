@@ -22,10 +22,10 @@ class Image extends Form
     public function init()
     {
         $this->add([
-            'name' => 'image-file',
+            'name' => 'fileupload',
             'type' => 'file',
             'attributes' => [
-                'id' => 'image-file',
+                'id' => 'fileupload',
             ],
             'options' => [
                 'label' => 'Browse...',

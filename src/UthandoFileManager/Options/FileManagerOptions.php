@@ -123,11 +123,13 @@ class FileManagerOptions extends AbstractOptions
     }
 
     /**
-     * @param array $allowImageTypes
+     * @param $allowImageTypes
+     * @return $this
      */
     public function setAllowImageTypes($allowImageTypes)
     {
         $this->allowImageTypes = $allowImageTypes;
+        return $this;
     }
 
     /**
@@ -144,7 +146,7 @@ class FileManagerOptions extends AbstractOptions
      */
     public function setCaseSensitive($caseSensitive)
     {
-        $this->caseSensitive = $caseSensitive;
+        $this->caseSensitive = (bool) $caseSensitive;
         return $this;
     }
 
@@ -157,11 +159,13 @@ class FileManagerOptions extends AbstractOptions
     }
 
     /**
-     * @param boolean $convertToDefault
+     * @param $convertToDefault
+     * @return $this
      */
     public function setConvertToDefault($convertToDefault)
     {
-        $this->convertToDefault = $convertToDefault;
+        $this->convertToDefault = (bool) $convertToDefault;
+        return $this;
     }
 
     /**
@@ -173,11 +177,13 @@ class FileManagerOptions extends AbstractOptions
     }
 
     /**
-     * @param string $defaultFileType
+     * @param $defaultFileType
+     * @return $this
      */
     public function setDefaultFileType($defaultFileType)
     {
         $this->defaultFileType = $defaultFileType;
+        return $this;
     }
 
     /**
@@ -189,11 +195,13 @@ class FileManagerOptions extends AbstractOptions
     }
 
     /**
-     * @param string $destination
+     * @param $destination
+     * @return $this
      */
     public function setDestination($destination)
     {
         $this->destination = $destination;
+        return $this;
     }
 
     /**
@@ -205,11 +213,13 @@ class FileManagerOptions extends AbstractOptions
     }
 
     /**
-     * @param int $maxHeight
+     * @param $maxHeight
+     * @return $this
      */
     public function setMaxHeight($maxHeight)
     {
         $this->maxHeight = $maxHeight;
+        return $this;
     }
 
     /**
@@ -221,11 +231,13 @@ class FileManagerOptions extends AbstractOptions
     }
 
     /**
-     * @param int $maxWidth
+     * @param $maxWidth
+     * @return $this
      */
     public function setMaxWidth($maxWidth)
     {
         $this->maxWidth = $maxWidth;
+        return $this;
     }
 
     /**
@@ -237,11 +249,13 @@ class FileManagerOptions extends AbstractOptions
     }
 
     /**
-     * @param int $minHeight
+     * @param $minHeight
+     * @return $this
      */
     public function setMinHeight($minHeight)
     {
         $this->minHeight = $minHeight;
+        return $this;
     }
 
     /**
@@ -253,11 +267,13 @@ class FileManagerOptions extends AbstractOptions
     }
 
     /**
-     * @param int $minWidth
+     * @param $minWidth
+     * @return $this
      */
     public function setMinWidth($minWidth)
     {
         $this->minWidth = $minWidth;
+        return $this;
     }
 
     /**
@@ -269,11 +285,13 @@ class FileManagerOptions extends AbstractOptions
     }
 
     /**
-     * @param boolean $overwrite
+     * @param $overwrite
+     * @return $this
      */
     public function setOverwrite($overwrite)
     {
-        $this->overwrite = $overwrite;
+        $this->overwrite = (bool) $overwrite;
+        return $this;
     }
 
     /**
@@ -285,11 +303,13 @@ class FileManagerOptions extends AbstractOptions
     }
 
     /**
-     * @param boolean $resizeOverSized
+     * @param $resizeOverSized
+     * @return $this
      */
     public function setResizeOverSized($resizeOverSized)
     {
-        $this->resizeOverSized = $resizeOverSized;
+        $this->resizeOverSized = (bool) $resizeOverSized;
+        return $this;
     }
 
     /**
@@ -301,11 +321,13 @@ class FileManagerOptions extends AbstractOptions
     }
 
     /**
-     * @param boolean $useMax
+     * @param $useMax
+     * @return $this
      */
     public function setUseMax($useMax)
     {
-        $this->useMax = $useMax;
+        $this->useMax = (bool) $useMax;
+        return $this;
     }
 
     /**
@@ -317,11 +339,13 @@ class FileManagerOptions extends AbstractOptions
     }
 
     /**
-     * @param boolean $useMin
+     * @param $useMin
+     * @return $this
      */
     public function setUseMin($useMin)
     {
-        $this->useMin = $useMin;
+        $this->useMin = (bool) $useMin;
+        return $this;
     }
 
     /**
@@ -356,7 +380,7 @@ class FileManagerOptions extends AbstractOptions
      */
     public function setCreateThumbnail($createThumbnail)
     {
-        $this->createThumbnail = $createThumbnail;
+        $this->createThumbnail = (bool) $createThumbnail;
         return $this;
     }
 

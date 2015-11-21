@@ -53,7 +53,6 @@ class ImageUploader extends Uploader
      */
     public function uploadImage($data)
     {
-
         /* @var $model \UthandoFileManager\Model\Image */
         $model = $this->getModel();
         $form = $this->getForm(null, $data, true, false);
@@ -75,18 +74,18 @@ class ImageUploader extends Uploader
         $formData = $form->getData();
 
         $hydrator = $this->getHydrator();
-        $model = $hydrator->hydrate($formData['image-file'], $model);
+        $model = $hydrator->hydrate($formData['fileupload'], $model);
 
         //change file permissions to default
         chmod($model->getTempName(), octdec($options->getDefaultFilePermissions()));
 
+        if (true === $this->getOptions()->getResizeOverSized()) {
+            $model = $this->resizeImage($model);
+        }
+
         $argv = compact('data', 'options', 'model');
 
         $this->getEventManager()->trigger('post.upload', $this, $this->prepareEventArguments($argv));
-
-        if (true === $this->getOptions()->getResizeOverSized()) {
-            $this->resizeImage($model);
-        }
 
         return $hydrator->extract($model);
     }
