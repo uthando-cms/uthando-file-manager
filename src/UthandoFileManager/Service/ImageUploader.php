@@ -16,6 +16,8 @@ use UthandoFileManager\UthandoFileManagerException;
 /**
  * Class ImageUploader
  *
+ * TODO refactor and remove duplication code
+ *
  * @package UthandoFileManager\Service
  */
 class ImageUploader extends Uploader
@@ -83,6 +85,10 @@ class ImageUploader extends Uploader
             $model = $this->resizeImage($model);
         }
 
+        if (true === $this->getOptions()->getCreateThumbnail()) {
+            $model = $this->generateThumbnail($model);
+        }
+
         $argv = compact('data', 'options', 'model');
 
         $this->getEventManager()->trigger('post.upload', $this, $this->prepareEventArguments($argv));
@@ -93,10 +99,74 @@ class ImageUploader extends Uploader
     /**
      * @param ImageModel $model
      * @return ImageModel
+     * @throws UthandoFileManagerException
      */
     public function generateThumbnail(ImageModel $model)
     {
+        $options            = $this->getOptions();
+        $imageDirectory     = $options->getDestination();
+        $thumbnailDirectory = $imageDirectory . $options->getThumbnailDirectory();
+        $image              = $model->getTempName();
+        $oldX               = $model->getWidth();
+        $oldY               = $model->getHeight();
+
+        if (!is_dir($thumbnailDirectory)) {
+            mkdir($thumbnailDirectory, octdec('755'));
+        }
+
+        switch ($model->getMimeType()) {
+            case IMAGETYPE_JPEG:
+                $imageIn = imageCreateFromJpeg($image);
+                break;
+            case IMAGETYPE_PNG:
+                $imageIn = imageCreateFromPng($image);
+                break;
+            case IMAGETYPE_GIF:
+                $imageIn = imageCreateFromGif($image);
+                break;
+            default:
+                throw new UthandoFileManagerException($this->error(self::MIME_NOT_SUPPORTED, $model->getMimeType()));
+        }
+
+        if ($model->getWidth() > $options->getThumbnailWidth()) {
+            $model->setHeight(round(($options->getThumbnailWidth() * $model->getHeight()) / $model->getWidth()));
+            $model->setWidth($options->getThumbnailWidth());
+        }
+
+        if ($model->getHeight() > $options->getThumbnailHeight()) {
+            $model->setWidth(round(($model->getWidth() * $options->getThumbnailHeight()) / $model->getHeight()));
+            $model->setHeight($options->getThumbnailHeight());
+        }
+
+        $imageOut = imageCreateTrueColor($model->getWidth(), $model->getHeight());
+
+        imageCopyResampled(
+            $imageOut, $imageIn,
+            0, 0, 0, 0,
+            $model->getWidth(), $model->getHeight(),
+            $oldX, $oldY
+        );
+
+        $image = $thumbnailDirectory . $model->getFileName();
+        $model->setThumbnail($model->getFileName());
+
+        switch ($model->getMimeType()) {
+            case IMAGETYPE_JPEG:
+                imageJpeg($imageOut, $image);
+                break;
+            case IMAGETYPE_PNG:
+                imagePng($imageOut, $image);
+                break;
+            case IMAGETYPE_GIF:
+                imageGif($imageOut, $image);
+                break;
+        }
+
+        imageDestroy($imageIn);
+        imageDestroy($imageOut);
+
         return $model;
+
     }
 
     /**
@@ -104,7 +174,7 @@ class ImageUploader extends Uploader
      * @return ImageModel
      * @throws UthandoFileManagerException
      */
-    public function resizeImage(ImageModel $model)
+    public function resizeImage(ImageModel $model) : ImageModel
     {
         $options    = $this->getOptions();
         $image      = $model->getTempName();
