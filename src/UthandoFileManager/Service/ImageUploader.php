@@ -40,12 +40,12 @@ class ImageUploader extends Uploader
     public function __construct()
     {
         $this->messageTemplates = array_merge($this->messageTemplates, [
-            self::MAX_WIDTH => 'Image exceeds max width: %s',
-            self::MAX_HEIGHT => 'Image exceeds max height: %s',
-            self::MIN_WIDTH => 'Image is below the min width: %s',
-            self::MIN_HEIGHT => 'Image is below the min height: %s',
-            self::NO_RESIZE => '%s - Options do not allow resize',
-            self::MIME_NOT_SUPPORTED => 'Image type %s is not supported for resizing.'
+            self::MAX_WIDTH             => 'Image exceeds max width: %s',
+            self::MAX_HEIGHT            => 'Image exceeds max height: %s',
+            self::MIN_WIDTH             => 'Image is below the min width: %s',
+            self::MIN_HEIGHT            => 'Image is below the min height: %s',
+            self::NO_RESIZE             => '%s - Options do not allow resize',
+            self::MIME_NOT_SUPPORTED    => 'Image type %s is not supported for resizing.'
         ]);
     }
 
@@ -166,7 +166,6 @@ class ImageUploader extends Uploader
         imageDestroy($imageOut);
 
         return $model;
-
     }
 
     /**
