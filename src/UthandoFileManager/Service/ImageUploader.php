@@ -57,7 +57,7 @@ class ImageUploader extends Uploader
     {
         /* @var $model \UthandoFileManager\Model\Image */
         $model = $this->getModel();
-        $form = $this->getForm(null, $data, true, false);
+        $form = $this->prepareForm(null, $data, true, false);
 
         $options = $this->getOptions();
 

@@ -58,7 +58,7 @@ class UploaderController extends AbstractActionController
             }
         }
 
-        return $viewModel->setVariable('form', $service->getForm());
+        return $viewModel->setVariable('form', $service->prepareForm());
     }
 
     public function uploadProgressAction()
