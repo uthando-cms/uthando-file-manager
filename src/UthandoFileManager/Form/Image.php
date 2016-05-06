@@ -21,6 +21,11 @@ class Image extends Form
 {
     public function init()
     {
+        $postMax = min([
+            ini_get('post_max_size'),
+            ini_get('upload_max_filesize')
+        ]);
+        
         $this->add([
             'name' => 'fileupload',
             'type' => 'file',
@@ -29,6 +34,7 @@ class Image extends Form
             ],
             'options' => [
                 'label' => 'Browse...',
+                'help-block' => 'The largest file size you can upload is ' . $postMax,
             ],
         ]);
     }
