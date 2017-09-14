@@ -74,7 +74,7 @@ class FileManager extends AbstractViewHelper
             ->appendStylesheet(
                 '//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css'
             )->appendStylesheet($view->basePath('el-finder/css/elfinder.min.css'));
-        
+
         $this->init = true;
 
     }
