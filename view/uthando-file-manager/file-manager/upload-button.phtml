@@ -1,4 +1,10 @@
 
+<?php
+if (!$this->summernoteEnabled){
+    echo $this->headLink();
+}
+?>
+
 <?php $this->inlineScript()->captureStart();?>
 $('button[name=<?=$this->elementName;?>]').on('click', function() {
         var fm = $('<div/>').dialogelfinder({
