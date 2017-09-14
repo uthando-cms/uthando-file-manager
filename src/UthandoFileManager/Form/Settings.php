@@ -25,27 +25,14 @@ class Settings extends Form
     public function init()
     {
         $this->add([
-            'type' => 'UthandoFileManagerSettingsFieldSet',
+            'type' => LegacyFieldSet::class,
             'name' => 'options',
             'attributes' => [
-                'class' => 'col-md-12',
+                'class' => 'col-md-6',
             ],
             'options' => [
                 //'use_as_base_fieldset' => true,
-                'label' => 'File Manager Options',
-            ],
-        ]);
-
-        $this->add([
-            'name' => 'button-submit',
-            'type' => 'submit',
-            'attributes' => [
-                'type' => 'submit',
-                'class' => 'btn-primary'
-            ],
-            'options' => [
-                'label' => 'Save',
-                'column-size' => 'md-6'
+                'label' => 'Legacy Upload Options',
             ],
         ]);
     }

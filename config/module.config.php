@@ -1,8 +1,16 @@
 <?php
+
+use UthandoFileManager\Form\LegacyFieldSet;
+
 return [
     'asset_manager' => [
         'resolver_configs' => [
             'collections' => [
+                'js/legacy-upload.js' => [
+                    'js/jquery.ui.widget.js',
+                    'js/jquery.iframe-transport.js',
+                    'js/jquery.fileupload.js',
+                ],
                 'js/summernote.js' => [
                     'js/summernote-elfinder.js',
                 ],
@@ -29,7 +37,7 @@ return [
         'invokables' => [
             'UthandoFileManagerImage'               => 'UthandoFileManager\Form\Image',
             'UthandoFileManagerSettings'            => 'UthandoFileManager\Form\Settings',
-            'UthandoFileManagerSettingsFieldSet'    => 'UthandoFileManager\Form\SettingsFieldSet',
+            LegacyFieldSet::class                   => LegacyFieldSet::class,
         ],
     ],
     'hydrators' => [

@@ -25,14 +25,11 @@
     <div class="progress-bar progress-bar-success"></div>
 </div>
 
-<script src="<?=$this->basePath('/js/jquery.ui.widget.js');?>"></script>
-<script src="<?=$this->basePath('/js/jquery.iframe-transport.js');?>"></script>
-<script src="<?=$this->basePath('/js/jquery.fileupload.js');?>"></script>
+<script src="<?=$this->basePath('js/legacy-upload.js');?>"></script>
 <script>
     $('.btn-file :file').on('change', function (){
         var input = $(this).parents('.input-group').find(':text')
         input.val($(this).val());
-
     });
 
     $(function () {

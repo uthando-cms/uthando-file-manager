@@ -34,6 +34,14 @@ class FileManager extends AbstractViewHelper
         );
     }
 
+    public function legacyUpload($params)
+    {
+        return $this->getView()->partial(
+            'uthando-file-manager/uploader/upload-button',
+            $params
+        );
+    }
+
     public function addDependencies()
     {
         $view = $this->getView();

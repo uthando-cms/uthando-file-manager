@@ -10,13 +10,15 @@
 
 namespace UthandoFileManager\Form;
 
-
 use UthandoFileManager\Options\FileManagerOptions;
+use Zend\Form\Element\Checkbox;
+use Zend\Form\Element\Number;
+use Zend\Form\Element\Text;
 use Zend\Form\Fieldset;
 use Zend\Hydrator\ClassMethods;
 use Zend\InputFilter\InputFilterProviderInterface;
 
-class SettingsFieldSet extends Fieldset implements InputFilterProviderInterface
+class LegacyFieldSet extends Fieldset implements InputFilterProviderInterface
 {
     public function __construct($name = null, array $options = [])
     {
@@ -30,223 +32,223 @@ class SettingsFieldSet extends Fieldset implements InputFilterProviderInterface
     {
         $this->add([
             'name'			=> 'case_sensitive',
-            'type'			=> 'checkbox',
+            'type'			=> Checkbox::class,
             'options'		=> [
                 'label'			=> 'Case Sensitive',
                 'use_hidden_element' => true,
                 'checked_value' => '1',
                 'unchecked_value' => '0',
                 'required' 		=> false,
-                'column-size' => 'md-4 col-md-offset-2',
+                'column-size' => 'md-8 col-md-offset-4',
             ],
         ]);
 
         $this->add([
             'name' => 'default_file_type',
-            'type' => 'text',
+            'type' => Text::class,
             'options' => [
                 'label' => 'Default File Type',
-                'column-size' => 'md-4',
+                'column-size' => 'md-8',
                 'label_attributes' => [
-                    'class' => 'col-md-2',
+                    'class' => 'col-md-4',
                 ],
             ],
         ]);
 
         $this->add([
             'name' => 'default_file_type',
-            'type' => 'text',
+            'type' => Text::class,
             'options' => [
                 'label' => 'Default File Type',
-                'column-size' => 'md-4',
+                'column-size' => 'md-8',
                 'label_attributes' => [
-                    'class' => 'col-md-2',
+                    'class' => 'col-md-4',
                 ],
             ],
         ]);
 
         $this->add([
             'name'			=> 'convert_to_default',
-            'type'			=> 'checkbox',
+            'type'			=> Checkbox::class,
             'options'		=> [
                 'label'			=> 'Convert To Default',
                 'use_hidden_element' => true,
                 'checked_value' => '1',
                 'unchecked_value' => '0',
                 'required' 		=> false,
-                'column-size' => 'md-4 col-md-offset-2',
+                'column-size' => 'md-8 col-md-offset-4',
             ],
         ]);
 
         $this->add([
             'name' => 'max_width',
-            'type' => 'number',
+            'type' => Number::class,
             'options' => [
                 'label' => 'Max Width',
-                'column-size' => 'md-4',
+                'column-size' => 'md-8',
                 'label_attributes' => [
-                    'class' => 'col-md-2',
+                    'class' => 'col-md-4',
                 ],
             ],
         ]);
 
         $this->add([
             'name' => 'max_height',
-            'type' => 'number',
+            'type' => Number::class,
             'options' => [
                 'label' => 'Max Height',
-                'column-size' => 'md-4',
+                'column-size' => 'md-8',
                 'label_attributes' => [
-                    'class' => 'col-md-2',
+                    'class' => 'col-md-4',
                 ],
             ],
         ]);
 
         $this->add([
             'name'			=> 'use_max',
-            'type'			=> 'checkbox',
+            'type'			=> Checkbox::class,
             'options'		=> [
                 'label'			=> 'Use Max',
                 'use_hidden_element' => true,
                 'checked_value' => '1',
                 'unchecked_value' => '0',
                 'required' 		=> false,
-                'column-size' => 'md-4 col-md-offset-2',
+                'column-size' => 'md-8 col-md-offset-4',
             ],
         ]);
 
         $this->add([
             'name' => 'min_width',
-            'type' => 'number',
+            'type' => Number::class,
             'options' => [
                 'label' => 'Min Width',
-                'column-size' => 'md-4',
+                'column-size' => 'md-8',
                 'label_attributes' => [
-                    'class' => 'col-md-2',
+                    'class' => 'col-md-4',
                 ],
             ],
         ]);
 
         $this->add([
             'name' => 'min_height',
-            'type' => 'number',
+            'type' => Number::class,
             'options' => [
                 'label' => 'Min Height',
-                'column-size' => 'md-4',
+                'column-size' => 'md-8',
                 'label_attributes' => [
-                    'class' => 'col-md-2',
+                    'class' => 'col-md-4',
                 ],
             ],
         ]);
 
         $this->add([
             'name'			=> 'use_min',
-            'type'			=> 'checkbox',
+            'type'			=> Checkbox::class,
             'options'		=> [
                 'label'			=> 'Use Min',
                 'use_hidden_element' => true,
                 'checked_value' => '1',
                 'unchecked_value' => '0',
                 'required' 		=> false,
-                'column-size' => 'md-4 col-md-offset-2',
+                'column-size' => 'md-8 col-md-offset-4',
             ],
         ]);
 
         $this->add([
             'name'			=> 'resize_over_sized',
-            'type'			=> 'checkbox',
+            'type'			=> Checkbox::class,
             'options'		=> [
                 'label'			=> 'Resize Over Sized',
                 'use_hidden_element' => true,
                 'checked_value' => '1',
                 'unchecked_value' => '0',
                 'required' 		=> false,
-                'column-size' => 'md-4 col-md-offset-2',
+                'column-size' => 'md-8 col-md-offset-4',
             ],
         ]);
 
         $this->add([
             'name' => 'default_file_permissions',
-            'type' => 'text',
+            'type' => Text::class,
             'options' => [
                 'label' => 'Default File Permissions',
-                'column-size' => 'md-4',
+                'column-size' => 'md-8',
                 'label_attributes' => [
-                    'class' => 'col-md-2',
+                    'class' => 'col-md-4',
                 ],
             ],
         ]);
 
         $this->add([
             'name' => 'destination',
-            'type' => 'text',
+            'type' => Text::class,
             'options' => [
                 'label' => 'Destination',
-                'column-size' => 'md-4',
+                'column-size' => 'md-8',
                 'label_attributes' => [
-                    'class' => 'col-md-2',
+                    'class' => 'col-md-4',
                 ],
             ],
         ]);
 
         $this->add([
             'name'			=> 'overwrite',
-            'type'			=> 'checkbox',
+            'type'			=> Checkbox::class,
             'options'		=> [
                 'label'			=> 'Overwrite',
                 'use_hidden_element' => true,
                 'checked_value' => '1',
                 'unchecked_value' => '0',
                 'required' 		=> false,
-                'column-size' => 'md-4 col-md-offset-2',
+                'column-size' => 'md-8 col-md-offset-4',
             ],
         ]);
 
         $this->add([
             'name'			=> 'create_thumbnail',
-            'type'			=> 'checkbox',
+            'type'			=> Checkbox::class,
             'options'		=> [
                 'label'			=> 'Create Thumbnail',
                 'use_hidden_element' => true,
                 'checked_value' => '1',
                 'unchecked_value' => '0',
                 'required' 		=> false,
-                'column-size' => 'md-4 col-md-offset-2',
+                'column-size' => 'md-8 col-md-offset-4',
             ],
         ]);
 
         $this->add([
             'name' => 'thumbnail_directory',
-            'type' => 'text',
+            'type' => Text::class,
             'options' => [
                 'label' => 'Thumbnail Directory',
-                'column-size' => 'md-4',
+                'column-size' => 'md-8',
                 'label_attributes' => [
-                    'class' => 'col-md-2',
+                    'class' => 'col-md-4',
                 ],
             ],
         ]);
 
         $this->add([
             'name' => 'thumbnail_width',
-            'type' => 'number',
+            'type' => Number::class,
             'options' => [
                 'label' => 'Thumbnail Width',
-                'column-size' => 'md-4',
+                'column-size' => 'md-8',
                 'label_attributes' => [
-                    'class' => 'col-md-2',
+                    'class' => 'col-md-4',
                 ],
             ],
         ]);
 
         $this->add([
             'name' => 'thumbnail_height',
-            'type' => 'number',
+            'type' => Number::class,
             'options' => [
                 'label' => 'Thumbnail Height',
-                'column-size' => 'md-4',
+                'column-size' => 'md-8',
                 'label_attributes' => [
-                    'class' => 'col-md-2',
+                    'class' => 'col-md-4',
                 ],
             ],
         ]);
