@@ -2,6 +2,17 @@
 return [
     'asset_manager' => [
         'resolver_configs' => [
+            'collections' => [
+                'js/summernote.js' => [
+                    'js/summernote-elfinder.js',
+                ],
+            ],
+            'aliases' => [
+                'el-finder/js/'             => './vendor/studio-42/elfinder/js/',
+                'el-finder/css/'            => './vendor/studio-42/elfinder/css/',
+                'el-finder/img/'            => './vendor/studio-42/elfinder/img/',
+                'el-finder/sounds/'         => './vendor/studio-42/elfinder/sounds/',
+            ],
             'paths' => [
                 'UthandoFileManager' => __DIR__ . '/../public',
             ],
@@ -9,7 +20,6 @@ return [
     ],
     'controllers' => [
         'invokables' => [
-            'UthandoFileManager\Controller\AssetManager'    => 'UthandoFileManager\Controller\AssetManagerController',
             'UthandoFileManager\Controller\FileManager'     => 'UthandoFileManager\Controller\FileManagerController',
             'UthandoFileManager\Controller\Settings'        => 'UthandoFileManager\Controller\SettingsController',
             'UthandoFileManager\Controller\Uploader'        => 'UthandoFileManager\Controller\UploaderController',
@@ -54,6 +64,11 @@ return [
             'fileisimage'   => 'UthandoFileManager\Validator\IsImage',
             'filemimetype'  => 'UthandoFileManager\Validator\MimeType',
         ],
+    ],
+    'view_helpers' => [
+        'invokables' => [
+            'FileManager' => \UthandoFileManager\View\FileManager::class,
+        ]
     ],
     'view_manager'  => [
         'template_map' => include __DIR__ . '/../template_map.php'

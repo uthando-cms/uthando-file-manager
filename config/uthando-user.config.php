@@ -8,7 +8,6 @@ return [
                     'privileges' => [
                         'allow' => [
                             'controllers' => [
-                                'UthandoFileManager\Controller\AssetManager' => ['action' => 'all'],
                                 'UthandoFileManager\Controller\FileManager' => ['action' => 'all'],
                                 'UthandoFileManager\Controller\Settings' => ['action' => 'all'],
                                 'UthandoFileManager\Controller\Uploader' => ['action' => 'all'],
@@ -18,7 +17,6 @@ return [
                 ],
             ],
             'resources' => [
-                'UthandoFileManager\Controller\AssetManager',
                 'UthandoFileManager\Controller\FileManager',
                 'UthandoFileManager\Controller\Settings',
                 'UthandoFileManager\Controller\Uploader',
