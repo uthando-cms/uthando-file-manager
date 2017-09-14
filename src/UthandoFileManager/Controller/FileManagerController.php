@@ -40,8 +40,6 @@ class FileManagerController extends AbstractActionController
         $config = $this->getServiceLocator()
             ->get('config')['uthando_file_manager']['elfinder']['server_options'];
 
-        \ChromePhp::info($config);
-
         $connector = new \elFinderConnector(new \elFinder($config));
 
         $this->layout()->setTerminal(true);
