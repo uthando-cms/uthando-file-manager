@@ -14,10 +14,6 @@ use UthandoCommon\View\AbstractViewHelper;
 
 class FileManager extends AbstractViewHelper
 {
-    protected $init = false;
-
-    protected $summernoteEnabled = false;
-
     public function standalone()
     {
         $this->addDependencies();
@@ -27,11 +23,9 @@ class FileManager extends AbstractViewHelper
         );
     }
 
-    public function summernote($uploadButton = false)
+    public function summernote()
     {
         $view = $this->getView();
-
-        $this->summernoteEnabled = true;
 
         $this->addDependencies();
 
@@ -48,7 +42,6 @@ class FileManager extends AbstractViewHelper
             'uthando-file-manager/file-manager/upload-button', [
                 'elementId' => $elementId,
                 'elementName' => $elementName,
-                'summernoteEnabled'  => $this->summernoteEnabled,
         ]);
     }
 
@@ -63,19 +56,9 @@ class FileManager extends AbstractViewHelper
 
     public function addDependencies()
     {
-        if ($this->init) return;
-
         $view = $this->getView();
 
-        $view->inlineScript()
-            ->appendFile($view->basePath('el-finder/js/elfinder.full.js'));
-
-        $view->headLink()
-            ->appendStylesheet(
-                '//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css'
-            )->appendStylesheet($view->basePath('el-finder/css/elfinder.min.css'));
-
-        $this->init = true;
-
+        $view->inlineScript()->appendFile($view->basePath('el-finder/js/elfinder.full.js'));
+        $view->headLink()->appendStylesheet($view->basePath('el-finder/css/elfinder.min.css'));
     }
 }
