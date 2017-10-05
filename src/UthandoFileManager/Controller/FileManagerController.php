@@ -24,7 +24,7 @@ class FileManagerController extends AbstractActionController
         return [];
     }
 
-    public function access($attr, $path, $data, $volume, $isDir, $relpath)
+    public static function access($attr, $path, $data, $volume, $isDir, $relpath)
     {
         $basename = basename($path);
 
