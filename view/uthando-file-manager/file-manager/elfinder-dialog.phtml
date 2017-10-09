@@ -1,6 +1,6 @@
 
-<?php $this->inlineScript()->captureStart();?>
-function elfinderDialog() {
+<script>
+    function elfinderDialog() {
         var fm = $('<div/>').dialogelfinder({
             url : '<?=$this->url('admin/file-manager/connector')?>',
             lang : 'en',
@@ -21,5 +21,5 @@ function elfinderDialog() {
 
         // fix z-index so dialog shows on top of sommernote when in full screen.
         $('.dialogelfinder').css('z-index', '100000');
-}
-<?php $this->inlineScript()->captureEnd();?>
+    }
+</script>

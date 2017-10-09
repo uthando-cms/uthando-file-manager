@@ -18,8 +18,10 @@ class FileManager extends AbstractViewHelper
     {
         $this->addDependencies();
 
-        return $this->getView()->partial(
-            'uthando-file-manager/file-manager/standalone'
+        $this->getView()->placeholder('js-scripts')->append(
+            $this->getView()->partial(
+                'uthando-file-manager/file-manager/standalone'
+            )
         );
     }
 
@@ -29,8 +31,10 @@ class FileManager extends AbstractViewHelper
 
         $this->addDependencies();
 
-        return $view->partial(
-            'uthando-file-manager/file-manager/elfinder-dialog'
+        $view->placeholder('js-scripts')->append(
+            $view->partial(
+                'uthando-file-manager/file-manager/elfinder-dialog'
+            )
         );
     }
 
@@ -38,26 +42,29 @@ class FileManager extends AbstractViewHelper
     {
         $this->addDependencies();
 
-        return $this->getView()->partial(
-            'uthando-file-manager/file-manager/upload-button', [
+        $this->getView()->placeholder('js-scripts')->append(
+            $this->getView()->partial(
+                'uthando-file-manager/file-manager/upload-button', [
                 'elementId' => $elementId,
                 'elementName' => $elementName,
-        ]);
+            ])
+        );
     }
 
     public function legacyUpload($elementId, $elementName)
     {
-        return $this->getView()->partial(
-            'uthando-file-manager/uploader/upload-button', [
-            'elementId' => $elementId,
-            'elementName' => $elementName,
-        ]);
+        $this->getView()->placeholder('js-scripts')->append(
+            $this->getView()->partial(
+                'uthando-file-manager/uploader/upload-button', [
+                'elementId' => $elementId,
+                'elementName' => $elementName,
+            ])
+        );
     }
 
     public function addDependencies()
     {
         $view = $this->getView();
-
         $view->inlineScript()->appendFile($view->basePath('el-finder/js/elfinder.full.js'));
         $view->headLink()->appendStylesheet($view->basePath('el-finder/css/elfinder.full.css'));
     }

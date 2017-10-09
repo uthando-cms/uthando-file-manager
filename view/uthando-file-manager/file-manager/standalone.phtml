@@ -1,6 +1,6 @@
 
-<?php $this->inlineScript()->captureStart();?>
-$(function () {
+<script>
+    $(function () {
         var $window = $(window);
         var init_win_height = $window.height() - 400;
 
@@ -26,5 +26,5 @@ $(function () {
                 thisElFinder.height(win_height).resize();
             }
         });
-});
-<?php $this->inlineScript()->captureEnd();?>
+    });
+</script>

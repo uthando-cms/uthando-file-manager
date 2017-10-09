@@ -1,6 +1,6 @@
 
-<?php $this->inlineScript()->captureStart();?>
-$('button[name=<?=$this->elementName;?>]').on('click', function() {
+<script>
+    $('button[name=<?=$this->elementName;?>]').on('click', function() {
         var fm = $('<div/>').dialogelfinder({
             url : '<?=$this->url('admin/file-manager/connector')?>',
             lang : 'en',
@@ -18,6 +18,6 @@ $('button[name=<?=$this->elementName;?>]').on('click', function() {
             },
             soundPath : '<?=$this->basePath('el-finder/sounds/');?>'
         }).dialogelfinder('instance');
-});
-<?php $this->inlineScript()->captureEnd();?>
+    });
+</script>
 
