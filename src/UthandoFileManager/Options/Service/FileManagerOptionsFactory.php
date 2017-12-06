@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
@@ -10,7 +10,7 @@
 
 namespace UthandoFileManager\Service\Factory;
 
-use UthandoFileManager\Options\FileManagerOptions as Options;
+use UthandoFileManager\Options\FileManagerOptions;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -19,14 +19,13 @@ use Zend\ServiceManager\ServiceLocatorInterface;
  *
  * @package UthandoFileManager\Service\Factory
  */
-class FileManagerOptions implements FactoryInterface
+class FileManagerOptionsFactory implements FactoryInterface
 {
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function createService(ServiceLocatorInterface $serviceLocator): FileManagerOptions
     {
         $config = $serviceLocator->get('config');
-        $options = (isset($config['uthando_file_manager']) && isset($config['uthando_file_manager']['options'])) ?
-            $config['uthando_file_manager']['options'] : [];
+        $options = $config['uthando_file_manager']['options'] ?? [];
 
-        return new Options($options);
+        return new FileManagerOptions($options);
     }
 }

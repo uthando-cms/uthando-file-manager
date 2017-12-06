@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
@@ -10,6 +10,7 @@
 
 namespace UthandoFileManager\Controller;
 
+use UthandoFileManager\Options\ElfinderOptions;
 use Zend\Mvc\Controller\AbstractActionController;
 
 /**
@@ -35,12 +36,12 @@ class FileManagerController extends AbstractActionController
     }
 
 
-    public function connectorAction()
+    public function connectorAction(): void
     {
-        $config = $this->getServiceLocator()
-            ->get('config')['uthando_file_manager']['elfinder']['server_options'];
+        /** @var ElfinderOptions $options */
+        $options = $this->getServiceLocator()->get(ElfinderOptions::class);
 
-        $connector = new \elFinderConnector(new \elFinder($config));
+        $connector = new \elFinderConnector(new \elFinder($options->getServerOptions()));
 
         $this->layout()->setTerminal(true);
 

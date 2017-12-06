@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
@@ -63,7 +63,7 @@ class Uploader extends AbstractService
     public function getOptions()
     {
         if (!$this->options instanceof FileManagerOptions) {
-            $options = $this->getServiceLocator()->get('UthandoFileManager\Options\FileManager');
+            $options = $this->getServiceLocator()->get(FileManagerOptions::class);
             $this->options = $options;
         }
 

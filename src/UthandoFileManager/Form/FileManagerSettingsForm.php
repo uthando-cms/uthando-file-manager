@@ -17,7 +17,7 @@ use Zend\Form\Form;
  *
  * @package UthandoFileManager\Form
  */
-class Settings extends Form
+class FileManagerSettingsForm extends Form
 {
     /**
      * Set up elements
@@ -33,6 +33,18 @@ class Settings extends Form
             'options' => [
                 //'use_as_base_fieldset' => true,
                 'label' => 'Legacy Upload Options',
+            ],
+        ]);
+
+        $this->add([
+            'type' => ElfinderFieldSet::class,
+            'name' => 'elfinder',
+            'attributes' => [
+                'class' => 'col-md-6',
+            ],
+            'options' => [
+                //'use_as_base_fieldset' => true,
+                'label' => 'Elfinder Config',
             ],
         ]);
     }

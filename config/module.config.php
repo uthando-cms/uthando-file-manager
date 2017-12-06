@@ -1,6 +1,13 @@
 <?php
 
+use UthandoFileManager\Form\ElfinderFieldSet;
+use UthandoFileManager\Form\FileManagerSettingsForm;
 use UthandoFileManager\Form\LegacyFieldSet;
+use UthandoFileManager\Options\ElfinderOptions;
+use UthandoFileManager\Options\FileManagerOptions;
+use UthandoFileManager\Options\Service\ElfinderOptionsFactory;
+use UthandoFileManager\Service\Factory\FileManagerOptionsFactory;
+use UthandoFileManager\View\FileManager;
 
 return [
     'asset_manager' => [
@@ -35,9 +42,10 @@ return [
     ],
     'form_elements' => [
         'invokables' => [
-            'UthandoFileManagerImage'               => 'UthandoFileManager\Form\Image',
-            'UthandoFileManagerSettings'            => 'UthandoFileManager\Form\Settings',
-            LegacyFieldSet::class                   => LegacyFieldSet::class,
+            ElfinderFieldSet::class         => ElfinderFieldSet::class,
+            'UthandoFileManagerImage'       => 'UthandoFileManager\Form\Image',
+            FileManagerSettingsForm::class  => FileManagerSettingsForm::class,
+            LegacyFieldSet::class           => LegacyFieldSet::class,
         ],
     ],
     'hydrators' => [
@@ -51,8 +59,12 @@ return [
         ],
     ],
     'service_manager' => [
+        'aliases' => [
+            'UthandoFileManager\Options\FileManager'    => FileManagerOptions::class,
+        ],
         'factories' => [
-            'UthandoFileManager\Options\FileManager'    => 'UthandoFileManager\Service\Factory\FileManagerOptions',
+            ElfinderOptions::class      => ElfinderOptionsFactory::class,
+            FileManagerOptions::class   => FileManagerOptionsFactory::class,
         ],
     ],
     'uthando_models' => [
@@ -74,8 +86,11 @@ return [
         ],
     ],
     'view_helpers' => [
+        'aliases' => [
+            'fileManager' => FileManager::class,
+        ],
         'invokables' => [
-            'FileManager' => \UthandoFileManager\View\FileManager::class,
+            FileManager::class => FileManager::class,
         ]
     ],
     'view_manager'  => [

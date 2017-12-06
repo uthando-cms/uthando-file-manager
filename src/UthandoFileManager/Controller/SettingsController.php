@@ -11,6 +11,7 @@
 namespace UthandoFileManager\Controller;
 
 use UthandoCommon\Controller\SettingsTrait;
+use UthandoFileManager\Form\FileManagerSettingsForm;
 use Zend\Mvc\Controller\AbstractActionController;
 
 /**
@@ -24,7 +25,7 @@ class SettingsController extends AbstractActionController
 
     public function __construct()
     {
-        $this->setFormName('UthandoFileManagerSettings')
+        $this->setFormName(FileManagerSettingsForm::class)
             ->setConfigKey('uthando_file_manager');
     }
 }
