@@ -1,6 +1,6 @@
 
-<?php $this->inlineScript()->captureStart();?>
-$('button[name=<?=$this->elementName;?>]').on('click', function() {
+<script>
+    $('button[name=<?=$this->elementName;?>]').on('click', function() {
         var uploadDialog = bootbox.dialog({
             message: '<i class="fa fa-spinner fa-spin"></i> Loading',
             title: "Upload Image",
@@ -25,6 +25,6 @@ $('button[name=<?=$this->elementName;?>]').on('click', function() {
         });
 
         uploadDialog.modal('show');
-});
-<?php $this->inlineScript()->captureEnd();?>
+    });
+</script>
 

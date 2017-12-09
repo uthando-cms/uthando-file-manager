@@ -10,7 +10,6 @@
 
 namespace UthandoFileManager\Hydrator\Strategy;
 
-
 use Zend\Config\Reader\Ini as IniReader;
 use Zend\Config\Writer\Ini as IniWriter;
 use Zend\Hydrator\Strategy\StrategyInterface;
