@@ -47,11 +47,12 @@ class ElfinderOptions extends AbstractOptions
         ],
         'bind'   => [
             // regist action, require
-            'upload.presave' => 'Plugin.Watermark.onUpLoadPreSave',
+            'upload.presave' => ['Plugin.Watermark.onUpLoadPreSave'],
         ],
         'plugin' => [
             // optional, default values are
             'Watermark' => [
+                'enable'         => false,
                 'source'         => APPLICATION_PATH . '/public/img/uthando-cms.jpg', // Path to Water mark image
                 'marginRight'    => 5,          // Margin right pixel
                 'marginBottom'   => 5,          // Margin bottom pixel

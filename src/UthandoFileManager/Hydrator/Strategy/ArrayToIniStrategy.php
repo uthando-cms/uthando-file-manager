@@ -20,6 +20,7 @@ class ArrayToIniStrategy implements StrategyInterface
     {
         if (is_array($value)) {
             $ini = new IniWriter();
+            $ini->setNestSeparator('_');
             $value = $ini->processConfig($value);
         }
 
@@ -30,6 +31,7 @@ class ArrayToIniStrategy implements StrategyInterface
     {
         if (is_string($value)) {
             $ini = new IniReader();
+            $ini->setNestSeparator('_');
             $value = $ini->fromString($value);
         }
 
