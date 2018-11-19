@@ -15,7 +15,7 @@ namespace UthandoFileManager\Model;
  *
  * @package UthandoFileManager\Model
  */
-class Image extends File
+class Image extends FileModel
 {
     /**
      * @var string

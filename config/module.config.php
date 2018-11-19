@@ -1,12 +1,16 @@
 <?php
 
-use UthandoFileManager\Form\ElfinderFieldSet;
-use UthandoFileManager\Form\FileManagerSettingsForm;
-use UthandoFileManager\Form\LegacyFieldSet;
+use UthandoFileManager\Controller\FileManagerController;
+use UthandoFileManager\Controller\SettingsController;
+use UthandoFileManager\Controller\UploaderController;
 use UthandoFileManager\Options\ElfinderOptions;
 use UthandoFileManager\Options\FileManagerOptions;
 use UthandoFileManager\Options\Service\ElfinderOptionsFactory;
 use UthandoFileManager\Service\Factory\FileManagerOptionsFactory;
+use UthandoFileManager\Service\ImageUploader;
+use UthandoFileManager\Service\Uploader;
+use UthandoFileManager\Validator\IsImage;
+use UthandoFileManager\Validator\MimeType;
 use UthandoFileManager\View\FileManager;
 
 return [
@@ -35,54 +39,31 @@ return [
     ],
     'controllers' => [
         'invokables' => [
-            'UthandoFileManager\Controller\FileManager'     => 'UthandoFileManager\Controller\FileManagerController',
-            'UthandoFileManager\Controller\Settings'        => 'UthandoFileManager\Controller\SettingsController',
-            'UthandoFileManager\Controller\Uploader'        => 'UthandoFileManager\Controller\UploaderController',
-        ],
-    ],
-    'form_elements' => [
-        'invokables' => [
-            ElfinderFieldSet::class         => ElfinderFieldSet::class,
-            'UthandoFileManagerImage'       => 'UthandoFileManager\Form\Image',
-            FileManagerSettingsForm::class  => FileManagerSettingsForm::class,
-            LegacyFieldSet::class           => LegacyFieldSet::class,
-        ],
-    ],
-    'hydrators' => [
-        'invokables' => [
-            'UthandoFileManagerImage' => 'UthandoFileManager\Hydrator\Image',
-        ],
-    ],
-    'input_filters' => [
-        'invokables' => [
-            'UthandoFileManagerImage' => 'UthandoFileManager\InputFilter\Image',
+            FileManagerController::class    => FileManagerController::class,
+            SettingsController::class       => SettingsController::class,
+            UploaderController::class       => UploaderController::class,
         ],
     ],
     'service_manager' => [
-        'aliases' => [
-            'UthandoFileManager\Options\FileManager'    => FileManagerOptions::class,
-        ],
         'factories' => [
             ElfinderOptions::class      => ElfinderOptionsFactory::class,
             FileManagerOptions::class   => FileManagerOptionsFactory::class,
         ],
     ],
-    'uthando_models' => [
-        'invokables' => [
-            'UthandoFileManagerFile'    => 'UthandoFileManager\Model\File',
-            'UthandoFileManagerImage'   => 'UthandoFileManager\Model\Image',
-        ],
-    ],
     'uthando_services' => [
         'invokables' => [
-            'UthandoFileManagerImage'       => 'UthandoFileManager\Service\ImageUploader',
-            'UthandoFileManagerUploader'    => 'UthandoFileManager\Service\Uploader',
+            ImageUploader::class    => ImageUploader::class,
+            Uploader::class         => Uploader::class,
         ]
     ],
     'validators' => [
+        'aliases' => [
+            'fileisimage'   => IsImage::class,
+            'filemimetype'  => MimeType::class,
+        ],
         'invokables' => [
-            'fileisimage'   => 'UthandoFileManager\Validator\IsImage',
-            'filemimetype'  => 'UthandoFileManager\Validator\MimeType',
+            IsImage::class => IsImage::class,
+            MimeType::class => MimeType::class,
         ],
     ],
     'view_helpers' => [

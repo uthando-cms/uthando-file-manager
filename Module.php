@@ -12,6 +12,7 @@ namespace UthandoFileManager;
 
 use UthandoCommon\Config\ConfigInterface;
 use UthandoCommon\Config\ConfigTrait;
+use UthandoSessionManager\Service\Factory\SessionManagerFactory;
 use Zend\Http\Request;
 use Zend\Mvc\MvcEvent;
 
@@ -50,7 +51,7 @@ class Module implements ConfigInterface
                 if ($sid) {
                     $session = $event->getApplication()
                         ->getServiceManager()
-                        ->get('UthandoSessionManager\SessionManager');
+                        ->get(SessionManagerFactory::class);
 
                     $session->setId($sid);
                 }
@@ -78,9 +79,11 @@ class Module implements ConfigInterface
     public function getAutoloaderConfig()
     {
         return array(
-            'Zend\Loader\ClassMapAutoloader' => array(
-                __DIR__ . '/autoload_classmap.php',
-            ),
+            'Zend\Loader\StandardAutoloader' => [
+                'namespaces' => [
+                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                ],
+            ],
         );
     }
 }

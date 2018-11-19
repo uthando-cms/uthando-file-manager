@@ -11,14 +11,19 @@
 namespace UthandoFileManager\InputFilter;
 
 use UthandoFileManager\Options\FileManagerOptions;
+use UthandoFileManager\Validator\IsImage;
+use Zend\Filter\File\RenameUpload;
 use Zend\InputFilter\InputFilter;
+use Zend\Validator\File\Extension;
+use Zend\Validator\File\ImageSize;
+use Zend\Validator\File\UploadFile;
 
 /**
  * Class Image
  *
  * @package UthandoFileManager\InputFilter
  */
-class Image extends InputFilter
+class ImageInputFilter extends InputFilter
 {
     public function addImageFile(FileManagerOptions $options)
     {
@@ -29,14 +34,14 @@ class Image extends InputFilter
             'name' => 'fileupload',
             'required' => true,
             'validators' => [
-                ['name' => 'FileUploadFile'],
-                ['name' => 'FileExtension', 'options' => [
+                ['name' => UploadFile::class],
+                ['name' => Extension::class, 'options' => [
                     'extension' => $allowedExtensions,
                     'case' => $options->getCaseSensitive(),
                 ]],
             ],
             'filters' => [
-                ['name' => 'FileRenameUpload', 'options' => [
+                ['name' => RenameUpload::class, 'options' => [
                     'target' => $options->getDestination(),
                     'useUploadName' => true,
                     'useUploadExtension' => true,
@@ -59,7 +64,7 @@ class Image extends InputFilter
             }
 
             $this->get('fileupload')->getValidatorChain()
-                ->attachByName('FileImageSize', $sizeOptions);
+                ->attachByName(ImageSize::class, $sizeOptions);
         }
 
         // some web hosts have disabled fileinfo, so we check it's there
@@ -67,7 +72,7 @@ class Image extends InputFilter
         // on SPL FileInfo or mime_content_type function.
         if (extension_loaded('fileinfo') || function_exists('mime_content_type')) {
             $this->get('fileupload')->getValidatorChain()
-                ->attachByName('FileIsImage', [
+                ->attachByName(IsImage::class, [
                     'mimeType' => $allowedMimeTypes,
                 ]);
         }

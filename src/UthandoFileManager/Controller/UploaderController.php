@@ -10,6 +10,8 @@
 
 namespace UthandoFileManager\Controller;
 
+use UthandoCommon\Service\ServiceManager;
+use UthandoFileManager\Service\ImageUploader;
 use Zend\Form\Form;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\ProgressBar\Upload\SessionProgress;
@@ -28,10 +30,10 @@ class UploaderController extends AbstractActionController
         $viewModel = new ViewModel();
         $viewModel->setTerminal(true);
 
-        /* @var $service \UthandoFileManager\Service\ImageUploader */
+        /* @var $service ImageUploader */
         $service = $this->getServiceLocator()
-            ->get('UthandoServiceManager')
-            ->get('UthandoFileManagerImage');
+            ->get(ServiceManager::class)
+            ->get(ImageUploader::class);
 
         $request = $this->getRequest();
 

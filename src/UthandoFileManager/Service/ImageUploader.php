@@ -10,6 +10,9 @@
 
 namespace UthandoFileManager\Service;
 
+use UthandoFileManager\Form\ImageForm;
+use UthandoFileManager\Hydrator\ImageHydrator;
+use UthandoFileManager\InputFilter\ImageInputFilter;
 use UthandoFileManager\Model\Image as ImageModel;
 use UthandoFileManager\UthandoFileManagerException;
 
@@ -33,6 +36,11 @@ class ImageUploader extends Uploader
      * @var string
      */
     protected $serviceAlias = 'UthandoFileManagerImage';
+
+    protected $form         = ImageForm::class;
+    protected $hydrator     = ImageHydrator::class;
+    protected $inputFilter  = ImageInputFilter::class;
+    protected $model        = ImageModel::class;
 
     /**
      * ImageUploader constructor.
@@ -65,7 +73,7 @@ class ImageUploader extends Uploader
 
         $this->getEventManager()->trigger('pre.upload', $this, $this->prepareEventArguments($argv));
 
-        /* @var $inputFilter \UthandoFileManager\InputFilter\Image */
+        /* @var $inputFilter \UthandoFileManager\InputFilter\ImageInputFilter */
         $inputFilter = $form->getInputFilter();
         $inputFilter->addImageFile($options);
 

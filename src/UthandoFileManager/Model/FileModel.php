@@ -18,7 +18,7 @@ use UthandoCommon\Model\ModelInterface;
  *
  * @package UthandoFileManager\Model
  */
-class File implements ModelInterface
+class FileModel implements ModelInterface
 {
     use Model;
 

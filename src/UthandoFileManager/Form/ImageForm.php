@@ -10,6 +10,8 @@
 
 namespace UthandoFileManager\Form;
 
+use Zend\Form\Element\File;
+use Zend\Form\Element\Hidden;
 use Zend\Form\Form;
 
 /**
@@ -17,7 +19,7 @@ use Zend\Form\Form;
  *
  * @package UthandoFileManager\Form
  */
-class Image extends Form
+class ImageForm extends Form
 {
     public function init()
     {
@@ -28,7 +30,7 @@ class Image extends Form
         
         $this->add([
             'name' => 'fileupload',
-            'type' => 'file',
+            'type' => File::class,
             'attributes' => [
                 'id' => 'fileupload',
             ],
@@ -44,7 +46,7 @@ class Image extends Form
         foreach ($elements as $name => $value) {
             $this->add([
                 'name' => $name,
-                'type' => 'hidden',
+                'type' => Hidden::class,
                 'attributes' => [
                     'value' => $value
                 ],

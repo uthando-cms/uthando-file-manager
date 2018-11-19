@@ -1,5 +1,9 @@
 <?php
 
+use UthandoFileManager\Controller\FileManagerController;
+use UthandoFileManager\Controller\SettingsController;
+use UthandoFileManager\Controller\UploaderController;
+
 return [
     'uthando_user' => [
         'acl' => [
@@ -8,18 +12,18 @@ return [
                     'privileges' => [
                         'allow' => [
                             'controllers' => [
-                                'UthandoFileManager\Controller\FileManager' => ['action' => 'all'],
-                                'UthandoFileManager\Controller\Settings' => ['action' => 'all'],
-                                'UthandoFileManager\Controller\Uploader' => ['action' => 'all'],
+                                FileManagerController::class => ['action' => 'all'],
+                                SettingsController::class => ['action' => 'all'],
+                                UploaderController::class => ['action' => 'all'],
                             ],
                         ],
                     ],
                 ],
             ],
             'resources' => [
-                'UthandoFileManager\Controller\FileManager',
-                'UthandoFileManager\Controller\Settings',
-                'UthandoFileManager\Controller\Uploader',
+                FileManagerController::class,
+                SettingsController::class,
+                UploaderController::class,
             ],
         ],
     ],

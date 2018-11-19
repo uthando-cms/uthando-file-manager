@@ -18,7 +18,7 @@ use Zend\Hydrator\AbstractHydrator;
  *
  * @package UthandoFileManager\Hydrator
  */
-class Image extends AbstractHydrator
+class ImageHydrator extends AbstractHydrator
 {
     /**
      * Extract values from model

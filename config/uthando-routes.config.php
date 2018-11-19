@@ -1,5 +1,9 @@
 <?php
 
+use UthandoFileManager\Controller\FileManagerController;
+use UthandoFileManager\Controller\SettingsController;
+use UthandoFileManager\Controller\UploaderController;
+
 return [
     'router' => [
         'routes' => [
@@ -11,7 +15,7 @@ return [
                             'route'    => '/file-manager',
                             'defaults' => [
                                 '__NAMESPACE__' => 'UthandoFileManager\Controller',
-                                'controller'    => 'FileManager',
+                                'controller'    => FileManagerController::class,
                                 'action'        => 'index',
                             ],
                         ],
@@ -23,7 +27,7 @@ return [
                                     'route'    => '/connector',
                                     'defaults' => [
                                         '__NAMESPACE__' => 'UthandoFileManager\Controller',
-                                        'controller'    => 'FileManager',
+                                        'controller'    => FileManagerController::class,
                                         'action'        => 'connector',
                                     ],
                                 ],
@@ -35,7 +39,7 @@ return [
                                     'route'    => '/settings',
                                     'defaults' => [
                                         '__NAMESPACE__' => 'UthandoFileManager\Controller',
-                                        'controller'    => 'Settings',
+                                        'controller'    => SettingsController::class,
                                         'action'        => 'index',
                                     ],
                                 ],
@@ -52,7 +56,7 @@ return [
                             ],
                             'defaults'  => [
                                 '__NAMESPACE__' => 'UthandoFileManager\Controller',
-                                'controller'    => 'Uploader',
+                                'controller'    => UploaderController::class,
                                 'action'        => 'upload-form',
                             ],
                         ],
