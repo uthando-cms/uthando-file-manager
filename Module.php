@@ -33,7 +33,7 @@ class Module implements ConfigInterface
         $app            = $event->getApplication();
         $eventManager   = $app->getEventManager();
 
-        $eventManager->attach(MvcEvent::EVENT_ROUTE, [$this, 'startSession'],100000);
+        $eventManager->attach(MvcEvent::EVENT_ROUTE, [$this, 'startSession'],10);
     }
 
     /**
