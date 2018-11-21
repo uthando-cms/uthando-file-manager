@@ -13,7 +13,7 @@ namespace UthandoFileManager\Service;
 use UthandoFileManager\Form\ImageForm;
 use UthandoFileManager\Hydrator\ImageHydrator;
 use UthandoFileManager\InputFilter\ImageInputFilter;
-use UthandoFileManager\Model\Image as ImageModel;
+use UthandoFileManager\Model\ImageModel;
 use UthandoFileManager\UthandoFileManagerException;
 
 /**
@@ -31,11 +31,6 @@ class ImageUploader extends Uploader
     const MIN_HEIGHT = 'MinHeight';
     const NO_RESIZE = 'NoResize';
     const MIME_NOT_SUPPORTED = 'MimeNotSupported';
-
-    /**
-     * @var string
-     */
-    protected $serviceAlias = 'UthandoFileManagerImage';
 
     protected $form         = ImageForm::class;
     protected $hydrator     = ImageHydrator::class;

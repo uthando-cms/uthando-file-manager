@@ -8,7 +8,7 @@
  * @license     see LICENSE
  */
 
-namespace UthandoFileManager\Options\Service;
+namespace UthandoFileManager\Options\Factory;
 
 
 use UthandoFileManager\Options\ElfinderOptions;

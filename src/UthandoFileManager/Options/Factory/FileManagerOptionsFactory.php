@@ -8,7 +8,7 @@
  * @license   see LICENSE
  */
 
-namespace UthandoFileManager\Service\Factory;
+namespace UthandoFileManager\Options\Factory;
 
 use UthandoFileManager\Options\FileManagerOptions;
 use Zend\ServiceManager\FactoryInterface;
