@@ -71,6 +71,6 @@ class FileManager extends AbstractViewHelper
     {
         $view = $this->getView();
         $view->inlineScript()->appendFile($view->basePath('el-finder/js/elfinder.full.js'));
-        $view->headLink()->appendStylesheet($view->basePath('el-finder/css/elfinder.full.css'));
+        //$view->headLink()->appendStylesheet($view->basePath('el-finder/css/elfinder.full.css'));
     }
 }

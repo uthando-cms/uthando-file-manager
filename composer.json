@@ -24,7 +24,7 @@
     "zendframework/zend-progressbar": "2.*",
     "uthando-cms/uthando-common": "2.*",
     "rwoverdijk/assetmanager": "1.*",
-    "studio-42/elfinder": "2.1.42"
+    "studio-42/elfinder": "2.*"
   },
   "autoload": {
     "psr-0": {
